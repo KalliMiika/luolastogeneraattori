@@ -6,7 +6,7 @@
  - Projektin tynkä pushattu repoon
  
 ### Dokumentaatiot aloitettu
- - Määrittelydokumentti lisätty
+ - [Määrittelydokumentti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md) lisätty
  
 ### Projekti laitettu aluilleen
  - Netbeans projekti luotu ja pom.xml lisätty kaikki riippuvuudet joita tällä hetkellä tiedetään tarvittavan
