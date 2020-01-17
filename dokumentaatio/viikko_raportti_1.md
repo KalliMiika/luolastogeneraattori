@@ -1,5 +1,7 @@
 # Viikon 1 Raportti
 
+## Tällä viikolla tehty
+
 ### Github repositorio luotu ja alustettu käyttökuntoon
  - Issuet laitettu päälle
  - Linkit lisättyihin dokumentteihin laitettu readme:n
@@ -12,3 +14,8 @@
  - Netbeans projekti luotu ja pom.xml lisätty kaikki riippuvuudet joita tällä hetkellä tiedetään tarvittavan
  
 #### Aikaa tällä viikolla käytetty noin yksi tunti
+
+## Ensi viikolla
+
+ - Huone -Olion rakennus ja niiden randomgeneroiti.
+ - Mahdollisesti jo törmäystarkistusten lisääminen huoneille.
