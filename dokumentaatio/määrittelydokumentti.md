@@ -10,7 +10,7 @@ Tavoite on rakentaa erilaisia 2D luolastogeneraatio algoritmeja ja vertailla nii
 
 ## Toteutettavat algoritmit
 
-### RandomWalk  Aikavaativuus O(n*m), n = Kaivettavien tunneleiden lukumäärä, m = Kaivettavien tunneleiden maksimipituus
+### RandomWalk  Aikavaativuus O(n * m), n = Kaivettavien tunneleiden lukumäärä, m = Kaivettavien tunneleiden maksimipituus
 
 ```
 Annetaan 2D kartta joka koostuu ainoastaan seinistä, 
@@ -18,7 +18,7 @@ aloitetaan kaivaminen satunnaisesta kohtaa karttaa
 ja kaivetaan n määrä satunnaisen pituisia käytäviä satunnaisiin suuntiin
 ```
 
-### Cellular Automata   O(n*m*9), n = Iteraatioiden lukumäärä, m = Kartan koko, joka ruudulle kartalla tarkistetaan 3x3 alue 
+### Cellular Automata   O(n * m * 9), n = Iteraatioiden lukumäärä, m = Kartan koko, joka ruudulle kartalla tarkistetaan 3x3 alue 
 
 ```
 Täytetään kartta satunnaisesti seinä ja lattiapaloista, 
