@@ -6,9 +6,9 @@
 
 ## Komentorivikomennot
 
-Testikattavuusraportti luodaan komennolla
-
 ### Testaus
+
+Testikattavuusraportti luodaan komennolla
 
 ```
 mvn jacoco:report
