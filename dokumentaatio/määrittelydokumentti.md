@@ -10,7 +10,7 @@ Tavoite on rakentaa erilaisia 2D luolastogeneraatio algoritmeja ja vertailla nii
 
 ## Toteutettavat algoritmit
 
-### RandomWalk
+### RandomWalk  Aikavaativuus O(n*m), n = Kaivettavien tunneleiden lukumäärä, m = Kaivettavien tunneleiden maksimipituus
 
 ```
 Annetaan 2D kartta joka koostuu ainoastaan seinistä, 
@@ -18,7 +18,7 @@ aloitetaan kaivaminen satunnaisesta kohtaa karttaa
 ja kaivetaan n määrä satunnaisen pituisia käytäviä satunnaisiin suuntiin
 ```
 
-### Cellular Automata
+### Cellular Automata   O(n*m*9), n = Iteraatioiden lukumäärä, m = Kartan koko, joka ruudulle kartalla tarkistetaan 3x3 alue 
 
 ```
 Täytetään kartta satunnaisesti seinä ja lattiapaloista, 
@@ -29,9 +29,9 @@ jos solu ei ollut seinä, mutta 5 tai useampi sitä ympäröivistä
 soluista olivat seiniä, niin solusta tulee seinä.
 ```
 
-### Sekä ainakin toinen seuraavista
+### Sekä ainakin toinen seuraavista 
 
-#### Muokattu versio TinyKeep pelin luolastogenerointi algoritmista
+#### Muokattu versio TinyKeep pelin luolastogenerointi algoritmista   Aikavaativuus on vaikea arvioida simulaation takia, ellei sille määritä maksimi määrää iteraatioita. Simulaation aikavaativuus olisi kuitenkin luokkaa O(n³) n = huoneiden lukumäärä
 ```
 Luolasto olisi tarkoitus luoda siten, että ensin luodaan suuri
 määrä satunnaisen kokoisia huoneita satunnaisiin paikkoihin
@@ -40,7 +40,7 @@ toisiaan törmätessään jolla saadaan levitettyä huoneet ympäri kenttää,
 siten ettei mitkään 2 huonetta ole päällekkäin. Näistä huoneista sitten 
 valitaan sopiva määrä huoneita satunnaisesti joiden välille generoidaan käytäviä.
 ```
-#### Vähän muokattu versio ylemmästä
+#### Vähän muokattu versio ylemmästä  Aikavaativuus on vaikea arvioida simulaation takia, ellei sille määritä maksimi määrää iteraatioita. Simulaation aikavaativuus olisi kuitenkin luokkaa O(n³), n = huoneiden lukumäärä, Delaunay Triangulationin muodostavan verkon rakentamiseen arvioisin O(n*log(n)) n = huoneiden lukumäärä, ja pienimmän virittävän puun rakentamiseen O(n + m log n) n = huoneiden lukumäärä ja m = mahdollisten käytävien lukumäärä
 ```
 Luodaan satunnainen, kuitenkin suhteellisen pieni määrä huoneita, 
 niin ettei minkään kahden huoneen keskipisteet ole päällekkäin.
