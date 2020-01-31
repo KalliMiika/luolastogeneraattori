@@ -1,5 +1,7 @@
 # Viikon 3 Raportti
 
+*Raportissa referoidaan useassa kohdassa tähän [lähteeseen](http://roguebasin.com/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels)*
+
 ### Tällä Viikolla
 
 #### Ohjelmointia
