@@ -67,6 +67,25 @@ public class Point {
     }
     
     /**
+     * Vähentää parametrina annetun Point-olion koordinaatit
+     * tämän Point-olion koordinaateista.
+     * @param point     Vähennettävä Point-olio
+     */
+    public void subtract(Point point) {
+        this.x -= point.getX();
+        this.y -= point.getY();
+    }
+    
+    
+    /**
+     * Kloonaa tämän Point-Olion
+     * @return  Point   Kopio tästä Point-Oliosta
+     */
+    public Point clone() {
+        return new Point(this.x, this.y);
+    }
+    
+    /**
      * Tarkistaa voidaanko parametrina annettu Point-olio
      * lisätä tähän Point-olioon.
      * Jos voidaan, lisätään se tähän Point-olioon ja palautetaan false
@@ -92,11 +111,11 @@ public class Point {
      */
     public boolean check(Point point) {
         int x = this.x + point.getX();
-        if (x < 0 || x >= Cave.WIDTH) {
+        if (x < 1 || x >= Cave.WIDTH-1) {
             return true;
         }
         int y = this.y + point.getY();
-        if (y < 0 || y >= Cave.HEIGHT) {
+        if (y < 1 || y >= Cave.HEIGHT-1) {
             return true;
         }
         return false;
@@ -105,12 +124,15 @@ public class Point {
     /**
      * Luodaan ja palautetaan uusi satunnaiseen lokaatioon
      * luotu Piste-olio
+     * Piste ei kuitenkaan saa osua ruudun reunoihin, joten
+     * vähennetään satunnaisuuden maksimiarvoista 2 ja lisätään
+     * minimiarvoon 1
      * @return randomgeneroitu point-olio
      */
     public static Point randomPoint() {
         Random rnd = new Random();
-        int x = rnd.nextInt(Cave.WIDTH);
-        int y = rnd.nextInt(Cave.HEIGHT);
+        int x = rnd.nextInt(Cave.WIDTH-2)+1;
+        int y = rnd.nextInt(Cave.HEIGHT-2)+1;
         return new Point(x, y);
     }
 
@@ -121,5 +143,19 @@ public class Point {
      */
     public String toString() {
         return "(" + this.x + ", " + this.y + ")";
+    }
+    
+    /**
+     * Vertaa parametrina annettua Point-Oliota itseensä
+     * Jos olioiden parametrit täsmäävät, palautetaan true
+     * muutoin false
+     * @param point     Point   Verrattava Point-Olio
+     * @return          boolean true jos sama, false muutoin
+     */
+    public boolean equals(Point point) {
+        if(this.x == point.getX() && this.y == point.y) {
+            return true;
+        }
+        return false;
     }
 }

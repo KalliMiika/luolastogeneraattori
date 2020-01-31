@@ -74,4 +74,18 @@ public class PointTest {
         point.checkAndAdd(new Point(2, 2));
         assertEquals("(2, 2)", point.toString());
     }
+    
+    @Test
+    public void pointCloneWorksCorrectly() {
+        Point p = point.clone();
+        assertTrue(point.equals(p));
+    }
+    
+    @Test
+    public void pointSubtractionWorksCorrectly() {
+        Point first = new Point(2, 2);
+        Point second = new Point(1, 1);
+        first.subtract(second);
+        assertEquals("(1, 1)", first.toString());
+    }
 }
