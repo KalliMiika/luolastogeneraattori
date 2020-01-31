@@ -4,6 +4,7 @@
 - Viikkoraportit
   - [Viikon 1 Raportti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/viikko_raportti_1.md)
   - [Viikon 2 Raportti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/viikko_raportti_2.md)
+  - [Viikon 3 Raportti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/viikko_raportti_3.md)
 
 ## Komentorivikomennot
 
