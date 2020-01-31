@@ -34,7 +34,7 @@ että voisiko algoritmia muokata hieman siten, että sitä voisi käyttää huon
 Luolastogenerointialgoritmien JUnit testaus.
 - Miten luoda JUnit -testi luolastongenerointialgoritmille niin, että siinä on mitään järkeä?
 
-#### Aikaa tällä viikolla käytetty noin  tuntia
+#### Aikaa tällä viikolla käytetty noin 16 tuntia
 - 12h Ohjelmointiin
   - Itse algoritmin toteutukseen noin 2h
   - Algoritmin päivitys lähteessä mainittuun paranneltuun versioon noin 1h
