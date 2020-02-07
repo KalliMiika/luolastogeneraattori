@@ -1,6 +1,9 @@
 # Testausdokumentti
 
 ### JUnit testien 
+*Point-, Cave- ja Room -Olioille on tehty kohtalaisen kattavat JUnit testit,
+projektin muut luokat on testattu lähinnä manuaalisesti*
+
 Testikattavuusraportti luodaan komennolla
 
 ```
@@ -23,6 +26,12 @@ crashin aiheuttava bugi vai ei.
 Tällä algoritmillä on tullu leikittyä aika paljon projektin aikana. Parametrien vaihtelu vaikuttaa lopputulokseen todella paljon,
 ja eri kokoisilla kartoilla haluaa käyttää eri parametrejä.
 ```
+Käytetyt parametrit:
+Cave:
+  WIDTH=42    Ja  WIDTH = 64
+  HEIGHT=21   Ja  HEIGHT = 32
+
+Cellular Automata:
 P(Wall) = Alustuksessa todennäköisyys jolla ruutu on seinä
 R1      = Ensimmäinen seinien etsinnän etäisyys
 C1      = Etsittävien seinien määrä ehdon toteutumiseen
@@ -48,3 +57,24 @@ C2      = Etsittävien seinien määrä ehdon toteutumiseen
 |5||1|5|0|0|
 |6||1|5|0|0|
 |7||1|5|0|0|
+
+<img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/cellularautomatasmall.png"/>    <img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/cellularautomatabig.png"/>
+
+### Toistaiseksi nimeämätön Algoritmi
+
+Algoritmi on vielä alkutekijöissään, mutta huoneiden erottelun testailua varten tein pari metodia jotka visualisoivat tapahtumien kulkua erottelusimulaation aikana 
+
+```
+Käytetyt Parametrit:
+Cave:
+  WIDTH=120
+  HEIGHT=60
+CaveGenerator:
+  roomsToGenerate=30
+```
+- Ennen simulaatiota
+<img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/cavegeneratorInput.png"/>
+
+- Simulaation jälkeen
+<img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/cavegeneratoroutput.png"/>
+
