@@ -47,15 +47,15 @@ public class CellularAutomata {
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 4);
+        map = makeCaverns(map, 1, 5, 2, 2);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 4);
+        map = makeCaverns(map, 1, 5, 2, 2);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 4);
+        map = makeCaverns(map, 1, 5, 2, 2);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
@@ -83,7 +83,7 @@ public class CellularAutomata {
         int wallCount = 0;
         int wallCount2 = 0;
         for (int column, row = 0; row < Cave.HEIGHT; row++) {
-            for (column = 0; column < Cave.WIDTH; column++) {
+            for (column = 0; column < Cave.WIDTH; column++) {   
                 wallCount = countAdjacentWalls(map, new Point(column, row), wallSearchRange1);
                 wallCount2 = countAdjacentWalls(map, new Point(column, row), wallSearchRange2);
                 if (wallCount >= wallCutOff1 || (wallCount2 <= wallCutOff2 && wallCutOff2 > 0)) {
