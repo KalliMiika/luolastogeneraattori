@@ -20,6 +20,7 @@
   
 #### Dokumentaatio
 - JavaDoc kommentoinnit pidetty ajantasalla
+- Toteutusdokumentti lisätty
 
 #### Testaus
 - JUnit testit pidetty ajantasalla, generaatioalgoritmejä lukuunottamatta
@@ -31,10 +32,11 @@
 - 4 Viikon deadlinessä on mainittu, että pitäisi aloittaa Aloitettu suorituskyky- tai muu aiheeseen sopiva testaus, en kuitenkaan ole vielä keksinyt, että miten toteuttaisin tämän ohjelmallisesti niin, että siinä testataan jotain luolastogeneroinnin kannalta oleellista.
 Tällä hetkellä työn alla olevalle algoritmille voisi kenties testata että mistä tahansa huoneesta pääsee mihin tahansa huoneeseen ja, että kaikkien huoneiden ympärille on onnistuttu generoimaan seinät niin ettei niissä ole ylimääräisiä reikiä, mutta algoritmi on vielä vaiheessa, joten testejä ei voi toteuttaa. Valmiille algoritmeille en keksinyt mitään testattavaa.
 
-#### Aikaa tällä viikolla käytetty noin 14 tuntia
+#### Aikaa tällä viikolla käytetty noin 15 tuntia
 - 12h Ohjelmointiin
 - 30min - 1h Kommentteihin
 - 1h JUnit testeihin
+- 1h Toteutusdokumentin kirjoitus
 
 ### Ensi Viikolla
 - Tarkoitus olisi aloittaa toteuttamalla Delaunay triangulation algoritmi huoneista koostuvan verkon rakentamiseksi, 
