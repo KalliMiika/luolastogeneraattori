@@ -27,6 +27,7 @@
                 <version>0.8.0</version>
                 <configuration>
                     <excludes>
+                        <exclude>luolastogeneraattori/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

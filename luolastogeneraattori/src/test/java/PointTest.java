@@ -82,6 +82,38 @@ public class PointTest {
     }
     
     @Test
+    public void pointCloneOppositeWorksCorrectly() {
+        Point point = new Point(2, 2);
+        Point p = point.clone().cloneOpposite();
+        assertEquals("(-2, -2)", p.toString());
+    }
+    
+    @Test
+    public void checkThisWorksCorrectly() {
+        Point point = new Point(2, 2);
+        assertFalse(point.checkThis());
+    }  
+    
+    @Test
+    public void checkThisWorksCorrectly2() {
+        Point point = new Point(-1, -1);
+        assertTrue(point.checkThis());
+    }    
+    @Test
+    public void checkThisWorksCorrectly3() {
+        Point point = new Point(3, -1);
+        assertTrue(point.checkThis());
+    }
+    
+    @Test
+    public void settersWorkCorrectly() {
+        Point point = new Point();
+        point.setX(1);
+        point.setY(1);
+        assertEquals("(1, 1)", point.toString());
+    }
+    
+    @Test
     public void pointSubtractionWorksCorrectly() {
         Point first = new Point(2, 2);
         Point second = new Point(1, 1);

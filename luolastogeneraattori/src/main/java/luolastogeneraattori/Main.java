@@ -7,14 +7,27 @@ public class Main {
     public static void main(String[] args) {
         Cave cave = new Cave();
         cave = Cave.generateUsingCellularAutomata();
-        cave.drawMap();
+        drawMap(cave.getMap());
         System.out.println("================================================================");
         System.out.println("================================================================");
         cave = Cave.generateUsingRandomWalk(150, 16 , 8);
-        cave.drawMap();
+        drawMap(cave.getMap());
         System.out.println("================================================================");
         System.out.println("================================================================");
         cave = Cave.generateCombiningCellularAutomataAndRandomWalk();
-        cave.drawMap();
+        drawMap(cave.getMap());
+        System.out.println("================================================================");
+        System.out.println("================================================================");
+        cave = Cave.generateUsingCaveGenerator();
+        drawMap(cave.getMap());
+    }
+    
+    private static void drawMap(char[][] map) {
+        for (char[] ca : map) {
+            for (char c : ca) {
+                System.out.print(c);
+            }
+            System.out.println("");
+        }
     }
 }

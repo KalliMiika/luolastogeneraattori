@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class Point {
 
-    private int x;
-    private int y;
+    private double x;
+    private double y;
 
     /**
      * Point -luokan default -konstruktori
@@ -27,10 +27,29 @@ public class Point {
     }
 
     /**
+     * Point -luokan konstruktori
+     *
+     * @param x Point olion x koordinaatti
+     * @param y Point olion y koordinaatti
+     */
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    /**
      *
      * @return Palauttaa Point -olion X-koordinaatin
      */
     public int getX() {
+        return (int) this.x;
+    }
+
+    /**
+     *
+     * @return Palauttaa Point -olion X-Arvon
+     */
+    public Double getXVal() {
         return this.x;
     }
 
@@ -39,6 +58,14 @@ public class Point {
      * @return Palauttaa Point -olion Y-koordinaatin
      */
     public int getY() {
+        return (int) this.y;
+    }
+
+    /**
+     *
+     * @return Palauttaa Point -olion Y-Arvon
+     */
+    public Double getYVal() {
         return this.y;
     }
 
@@ -67,8 +94,8 @@ public class Point {
      * @param point Lisättävä Point-olio
      */
     public void add(Point point) {
-        this.x += point.getX();
-        this.y += point.getY();
+        this.x += point.getXVal();
+        this.y += point.getYVal();
     }
 
     /**
@@ -89,6 +116,15 @@ public class Point {
      */
     public Point clone() {
         return new Point(this.x, this.y);
+    }
+
+    /**
+     * Kloonaa tämän Point-Olion päinvastainen Point-olio Eli x = -x ja y = -y
+     *
+     * @return Point Kopio päinvastaisesta Point-Oliosta
+     */
+    public Point cloneOpposite() {
+        return new Point(-this.x, -this.y);
     }
 
     /**
@@ -116,12 +152,28 @@ public class Point {
      * @return true jos lisäys ei onnistu, false muutoin
      */
     public boolean check(Point point) {
-        int x = this.x + point.getX();
+        double x = this.x + point.getX();
         if (x < 1 || x >= Cave.WIDTH - 1) {
             return true;
         }
-        int y = this.y + point.getY();
+        double y = this.y + point.getY();
         if (y < 1 || y >= Cave.HEIGHT - 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Tarkistaa onko tämä Point-Olio kartalla vai ei Palauttaa false jos on,
+     * true jos ei ole
+     *
+     * @return true jos ei olla kartalla, false muutoin
+     */
+    public boolean checkThis() {
+        if (this.x < 1 || this.x >= Cave.WIDTH - 1) {
+            return true;
+        }
+        if (this.y < 1 || this.y >= Cave.HEIGHT - 1) {
             return true;
         }
         return false;
@@ -147,7 +199,7 @@ public class Point {
      * @return String-tyyppinen kuvaus Point-oliosta
      */
     public String toString() {
-        return "(" + this.x + ", " + this.y + ")";
+        return "(" + getX() + ", " + getY() + ")";
     }
 
     /**
@@ -158,7 +210,7 @@ public class Point {
      * @return boolean true jos sama, false muutoin
      */
     public boolean equals(Point point) {
-        if (this.x == point.getX() && this.y == point.y) {
+        if (getX() == point.getX() && getY() == point.getY()) {
             return true;
         }
         return false;

@@ -19,17 +19,17 @@ public class CellularAutomata {
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
-        //map = makeCaverns(map, 1, 5, 2, 2);
+        map = makeCaverns(map, 1, 5, 3, 4);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 3);
         map = makeCaverns(map, 1, 5, 0, 0);
-        //map = makeCaverns(map, 1, 5, 2, 2);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 3);
+        map = makeCaverns(map, 1, 5, 3, 4);
         map = makeCaverns(map, 1, 5, 0, 0);
-        //map = makeCaverns(map, 1, 5, 2, 2);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 3);
+        map = makeCaverns(map, 1, 5, 0, 0);
+        map = makeCaverns(map, 1, 5, 3, 4);
+        map = makeCaverns(map, 1, 5, 0, 0);
+        map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         return map;
     }
@@ -47,17 +47,17 @@ public class CellularAutomata {
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
-        //map = makeCaverns(map, 1, 5, 2, 2);
+        map = makeCaverns(map, 1, 5, 3, 4);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 3);
         map = makeCaverns(map, 1, 5, 0, 0);
-        //map = makeCaverns(map, 1, 5, 2, 2);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 3);
+        map = makeCaverns(map, 1, 5, 3, 4);
         map = makeCaverns(map, 1, 5, 0, 0);
-        //map = makeCaverns(map, 1, 5, 2, 2);
         map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 3);
+        map = makeCaverns(map, 1, 5, 0, 0);
+        map = makeCaverns(map, 1, 5, 3, 4);
+        map = makeCaverns(map, 1, 5, 0, 0);
+        map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         return map;
     }
