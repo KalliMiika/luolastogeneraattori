@@ -21,7 +21,7 @@ kuvaillun algoritmin kaltainen hieman muunneltu algoritmi.
 3. Muutetaan aloituskohdasta seinä lattiaksi
 4. Loopataan 0 -> maxTunnels
   5. Valitaan satunnainen numero väliltä minTunnelLength ~ maxTunnelLength
-  6. Valitaan satunnainen suunta, kuitenkin sillä rajotuksella, että jos viimeksi kaivettiin vertikaalisuuntaan, 
+  6. Valitaan satunnainen suunta, kuitenkin sillä rajotuksella, että jos viimeksi kaivettiin vertikaalisuuntaan
   niin nyt kaivetaan horisontaali suuntaan ja päinvastoin
   7. Kaivetaan valittuun suuntaan valittu määrä askelia muuttaen seiniä lattiaksi joka askeleella.
 8. Kun tunneleita on kaivettu maxTunnels verran, ohjelma on valmis.
