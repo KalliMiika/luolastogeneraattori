@@ -78,13 +78,13 @@ public class CellularAutomata {
      * @param wallCutOff2       int         Toisen seinienlaskennan raja (Täytyy olla vähemmän seiniä kuin tämä), jolloin ruutu on SEINÄ
      * @return                  char[][]    Algoritmin siistimä luolasto seedin pohjalta
      */
-    private static char[][] makeCaverns(char[][] map, int wallSearchRange, int wallCutOff1, int wallSearchRange2, int wallCutOff2) {
+    private static char[][] makeCaverns(char[][] map, int wallSearchRange1, int wallCutOff1, int wallSearchRange2, int wallCutOff2) {
         char[][] result = new char[Cave.HEIGHT][Cave.WIDTH];
         int wallCount = 0;
         int wallCount2 = 0;
         for (int column, row = 0; row < Cave.HEIGHT; row++) {
             for (column = 0; column < Cave.WIDTH; column++) {
-                wallCount = countAdjacentWalls(map, new Point(column, row), wallSearchRange);
+                wallCount = countAdjacentWalls(map, new Point(column, row), wallSearchRange1);
                 wallCount2 = countAdjacentWalls(map, new Point(column, row), wallSearchRange2);
                 if (wallCount >= wallCutOff1 || (wallCount2 <= wallCutOff2 && wallCutOff2 > 0)) {
                     result[row][column] = '#';

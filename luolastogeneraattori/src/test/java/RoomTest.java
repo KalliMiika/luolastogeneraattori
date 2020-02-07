@@ -4,6 +4,7 @@ import luolastogeneraattori.cavegenerators.CaveGenerator;
 import luolastogeneraattori.objects.Cave;
 import luolastogeneraattori.objects.Point;
 import luolastogeneraattori.objects.Room;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
@@ -147,5 +148,20 @@ public class RoomTest {
             }
         }
         assertTrue(works);
+    }
+    
+    @Test
+    public void CollisionBetweenRoomsDetectedCorrectly() {
+        Room r1 = new Room(new Point(7, 8), 3, 3, 5, 0);
+        Room r2 = new Room(new Point(7, 7), 3, 3, 5, 0);
+        int collision = r1.checkCollision(r2);
+        assertEquals(1, collision);
+    }
+    
+    @Test
+    public void CollisionBetweenRoomAndAWallDetectedCorrectly() {
+        Room r1 = new Room(new Point(1, 1), 3, 3, 5, 0);
+        int collision = r1.checkCollisionWithWalls();
+        assertEquals(2, collision);
     }
 }
