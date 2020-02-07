@@ -28,7 +28,8 @@
 - Koodi pidetty suurinpiirtein määritellyn Checkstylen hyväksyttävänä
 
 #### Epäselvää
-- Epäselvyyksiä tältä viikolta ei hirveämmin jäänyt
+- 4. Viikon deadlinessä on mainittu, että pitäisi aloittaa Aloitettu suorituskyky- tai muu aiheeseen sopiva testaus, en kuitenkaan ole vielä keksinyt, että miten toteuttaisin tämän ohjelmallisesti niin, että siinä testataan jotain luolastogeneroinnin kannalta oleellista.
+Tällä hetkellä työn alla olevalle algoritmille voisi kenties testata että mistä tahansa huoneesta pääsee mihin tahansa huoneeseen ja, että kaikkien huoneiden ympärille on onnistuttu generoimaan seinät niin ettei niissä ole ylimääräisiä reikiä, mutta algoritmi on vielä vaiheessa, joten testejä ei voi toteuttaa. Valmiille algoritmeille en keksinyt mitään testattavaa.
 
 #### Aikaa tällä viikolla käytetty noin 14 tuntia
 - 12h Ohjelmointiin
