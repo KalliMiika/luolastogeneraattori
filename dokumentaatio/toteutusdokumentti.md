@@ -87,3 +87,7 @@ on yhtenäinen.
 - https://www.gamasutra.com/blogs/AAdonaac/20150903/252889/Procedural_Dungeon_Generation_Algorithm.php
 - https://www.reddit.com/r/gamedev/comments/1dlwc4/procedural_dungeon_generation_algorithm_explained/
 - http://pcg.wikidot.com/pcg-algorithm:dungeon-generation
+- https://github.com/Yonaba/delaunay/blob/master/delaunay.lua
+- https://www.geeksforgeeks.org/program-find-circumcenter-triangle-2/
+- https://en.wikipedia.org/wiki/Bowyer%E2%80%93Watson_algorithm
+- https://github.com/Bl4ckb0ne/delaunay-triangulation
