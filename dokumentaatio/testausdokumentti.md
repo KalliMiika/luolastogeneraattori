@@ -64,6 +64,8 @@ C2      = Etsittävien seinien määrä ehdon toteutumiseen
 
 Algoritmi on vielä alkutekijöissään, mutta huoneiden erottelun testailua varten tein pari metodia jotka visualisoivat tapahtumien kulkua erottelusimulaation aikana 
 
+Delaunay -Algoritmin testausta varten tein Graph.java luokan joka piirtää generoidun verkon
+
 ```
 Käytetyt Parametrit:
 Cave:
@@ -78,3 +80,15 @@ CaveGenerator:
 - Simulaation jälkeen
 <img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/cavegeneratoroutput.png"/>
 
+```
+Käytetyt Parametrit:
+Cave:
+  WIDTH=1800
+  HEIGHT=1200
+CaveGenerator:
+  roomsToGenerate=75
+Graph:
+  kuvanskaalauskeroimiksi *5, defaulttina käyttänyt *15
+```
+- Delaunay -Algoritmin generoima verkko
+<img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/delaunay.png"/>
