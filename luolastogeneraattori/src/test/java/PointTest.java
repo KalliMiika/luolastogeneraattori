@@ -120,4 +120,24 @@ public class PointTest {
         first.subtract(second);
         assertEquals("(1, 1)", first.toString());
     }
+    
+    @Test
+    public void pointDistanceCalculatedCorrectly() {
+        Point p1 = Point.randomPoint();
+        Point p2 = Point.randomPoint();
+
+        double dx = Math.abs(p1.getX() - p2.getX());
+        double dy = Math.abs(p1.getY() - p2.getY());
+        double c = Math.sqrt(dx * dx + dy * dy);
+        
+        assertEquals(c, p1.dist(p2), 0);
+    }
+    
+    @Test
+    public void distancesShouldMatch() {
+        Point p1 = Point.randomPoint();
+        Point p2 = Point.randomPoint();
+        
+        assertEquals(p2.dist(p1), p1.dist(p2), 0);
+    }
 }

@@ -10,7 +10,8 @@ public class Room {
     private int width;
     private int height;
 
-    private char id;
+    private int id;
+    
 
     /**
      * Taulukko määrittää että kuinka moneen osaan ympyrä jaetaan riippuen
@@ -47,7 +48,7 @@ public class Room {
         this.width = width;
         this.height = height;
         this.radius = radius;
-        this.id = (char) (97 + id);
+        this.id = id;
     }
 
     /**
@@ -55,7 +56,7 @@ public class Room {
      * koordinaattien osoittamaan kohtaan
      */
     public void drawCenter() {
-        Cave.getInstance().map[center.getY()][center.getX()] = this.id;
+        Cave.getInstance().map[center.getY()][center.getX()] = (char)(97+this.id);
     }
 
     /**
@@ -162,6 +163,15 @@ public class Room {
     public Point getCenter() {
         return this.center;
     }
+    
+    
+    /**
+     * Setteri Room-Olion keskipisteelle
+     * @param center 
+     */
+    public void setCenter(Point center) {
+        this.center = center;
+    }
 
     /**
      * Palauttaa tämän Room-Olion "kuplan" säteen
@@ -177,8 +187,16 @@ public class Room {
      *
      * @return int id
      */
-    public char getId() {
+    public int getId() {
         return this.id;
+    }
+    
+    /**
+     * Setteri Room-Olion id:lle
+     * @param id 
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -217,6 +235,6 @@ public class Room {
      * @return String tekstimuotoinen kuvaus tästä Room-Oliosta
      */
     public String toString() {
-        return "Room " + this.id + ": " + "Center=" + center.toString() + " WIDTH=" + width + " HEIGHT=" + height;
+        return "Room " + (char)this.id + ": " + "Center=" + center.toString() + " WIDTH=" + width + " HEIGHT=" + height;
     }
 }

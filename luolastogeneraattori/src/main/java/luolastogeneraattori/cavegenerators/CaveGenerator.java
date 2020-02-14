@@ -1,6 +1,8 @@
 package luolastogeneraattori.cavegenerators;
 
 import luolastogeneraattori.objects.Room;
+import luolastogeneraattori.utils.Delaunay;
+import luolastogeneraattori.ui.Graph;
 
 public class CaveGenerator {
     
@@ -22,6 +24,8 @@ public class CaveGenerator {
         while (checkCollisions() > 0) {                     //Huoneiden törmäilysimulaatio
         }                    
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
+        Graph graph = new Graph();
+        graph.main(rooms, new Delaunay().triangulate(rooms));
     }
     
     /**

@@ -178,6 +178,20 @@ public class Point {
         }
         return false;
     }
+    
+    
+    /**
+     * Metodi laskee etäisyyden tämän Point -olion
+     * ja annetun Point-olion välillä
+     * @param to    Point   tarkasteltava Point -Olio
+     * @return      doubl   etäisyys tämän ja tarkasteltavan Point-olion välillä
+     */
+    public double dist(Point to) {
+        double dx = Math.abs(this.getXVal() - to.getXVal());
+        double dy = Math.abs(this.getYVal() - to.getYVal());
+
+        return Math.sqrt((dx * dx) + (dy * dy));
+    }
 
     /**
      * Luodaan ja palautetaan uusi satunnaiseen lokaatioon luotu Piste-olio

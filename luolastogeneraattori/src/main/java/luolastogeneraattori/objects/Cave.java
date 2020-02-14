@@ -1,5 +1,6 @@
 package luolastogeneraattori.objects;
 
+import java.util.ArrayList;
 import java.util.Random;
 import luolastogeneraattori.cavegenerators.CaveGenerator;
 import luolastogeneraattori.cavegenerators.CellularAutomata;
@@ -150,7 +151,7 @@ public class Cave {
      */
     public static Cave generateUsingCaveGenerator() {
         Cave cave = new Cave();
-        new CaveGenerator().generateMap(10);
+        new CaveGenerator().generateMap(12);
         return cave;
     }
     

@@ -28,6 +28,7 @@
                 <configuration>
                     <excludes>
                         <exclude>luolastogeneraattori/*</exclude>
+                        <exclude>luolastogeneraattori/ui/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

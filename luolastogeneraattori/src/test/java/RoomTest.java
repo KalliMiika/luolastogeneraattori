@@ -1,6 +1,6 @@
 
 
-import luolastogeneraattori.cavegenerators.CaveGenerator;
+import java.util.Random;
 import luolastogeneraattori.objects.Cave;
 import luolastogeneraattori.objects.Point;
 import luolastogeneraattori.objects.Room;
@@ -136,18 +136,12 @@ public class RoomTest {
     
     @Test
     public void drawCenterWorksCorrectly() {
-        CaveGenerator caveGen = new CaveGenerator();
-        caveGen.generateMap(8);
-        Room[] rooms = caveGen.getRooms();
-        Cave cave = Cave.getInstance();
-        boolean works = true;
-        char[][] map = cave.getMap();
-        for (Room r : rooms) {
-            if (r.getId() != map[r.getCenter().getY()][r.getCenter().getX()]) {
-                works = false;
-            }
-        }
-        assertTrue(works);
+        int id = new Random().nextInt(10);
+        Room r = Room.generateRandomRoom(id);
+        Cave cave = new Cave();
+        r.drawCenter();
+        id += 97;
+        assertEquals(cave.getMap()[r.getCenter().getY()][r.getCenter().getX()], (char)id );
     }
     
     @Test
