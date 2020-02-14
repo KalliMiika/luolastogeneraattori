@@ -71,7 +71,7 @@ Käytetyt Parametrit:
 Cave:
   WIDTH=120
   HEIGHT=60
-CaveGenerator:
+Cave.generateUsingCaveGenerator():
   roomsToGenerate=30
 ```
 - Ennen simulaatiota
@@ -85,7 +85,7 @@ Käytetyt Parametrit:
 Cave:
   WIDTH=1800
   HEIGHT=1200
-CaveGenerator:
+Cave.generateUsingCaveGenerator():
   roomsToGenerate=75
 Graph:
   kuvanskaalauskeroimiksi *5, defaulttina käyttänyt *15
