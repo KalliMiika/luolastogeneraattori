@@ -66,7 +66,6 @@ public class SpanningTrees {
                     }
                 }
             }
-
             Corridor cor = tmp.get(rnd.nextInt(tmp.size()));
             tmp.remove(cor);
             from = cor.getFrom();

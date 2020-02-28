@@ -53,9 +53,13 @@ public class Corridor {
                 }
             }
         }
-        currentStep = currentStep.getPrevious();
+        if (currentStep.hasPrevious()) {
+            currentStep = currentStep.getPrevious();
+        }
         while (currentStep.hasPrevious()) {
-            Cave.getInstance().map[currentStep.getPoint().getY()][currentStep.getPoint().getX()] = '#';
+            if (Cave.getInstance().map[currentStep.getPoint().getY()][currentStep.getPoint().getX()] == ' ') {
+                Cave.getInstance().map[currentStep.getPoint().getY()][currentStep.getPoint().getX()] = '#';
+            }
             currentStep = currentStep.getPrevious();
         }
     }
@@ -80,7 +84,8 @@ public class Corridor {
                 for (int column = x - 1; column <= x + 1; column++) {
                     Point p = new Point(column, row);
                     if (!help[row][column] && (Cave.getInstance().map[row][column] == ' ' 
-                            || Cave.getInstance().map[row][column] == '+')) {
+                            || Cave.getInstance().map[row][column] == '+'
+                            || Cave.getInstance().map[p.getY()][p.getX()] == '#')) {
                         spq.add(new Step(p, p.dist(goal), currentStep));
                         help[row][column] = true;
                     }
@@ -115,7 +120,6 @@ public class Corridor {
             }
         }
         Point closestDoor = start; 
-        curDistance = 3.0;
         for (int row = from.getCenter().getY() - from.getRadius(); row <= from.getCenter().getY() + from.getRadius(); row++) {
             for (int column = from.getCenter().getX() - from.getRadius(); column <= from.getCenter().getX() + from.getRadius(); column++) {
                 if (Cave.getInstance().map[row][column] == '+') {
@@ -128,7 +132,7 @@ public class Corridor {
                 }
             }
         }
-        if (curDistance < 3) {
+        if (curDistance < 2) {
             start = closestDoor;
         }
         
@@ -147,9 +151,8 @@ public class Corridor {
             }
         }   
         closestDoor = goal;
-        curDistance = 3.0;
-        for (int row = from.getCenter().getY() - from.getRadius(); row <= from.getCenter().getY() + from.getRadius(); row++) {
-            for (int column = from.getCenter().getX() - from.getRadius(); column <= from.getCenter().getX() + from.getRadius(); column++) {
+        for (int row = to.getCenter().getY() - to.getRadius(); row <= to.getCenter().getY() + to.getRadius(); row++) {
+            for (int column = to.getCenter().getX() - to.getRadius(); column <= to.getCenter().getX() + to.getRadius(); column++) {
                 if (Cave.getInstance().map[row][column] == '+') {
                     Point p = new Point(column, row);
                     double d = p.dist(goal);
@@ -160,7 +163,7 @@ public class Corridor {
                 }
             }
         }
-        if (curDistance < 3) {
+        if (curDistance < 2) {
             goal = closestDoor;
         }
         

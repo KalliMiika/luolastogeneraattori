@@ -1,6 +1,7 @@
 package luolastogeneraattori;
 
 import luolastogeneraattori.objects.Cave;
+import luolastogeneraattori.objects.Point;
 
 public class Main {
 
