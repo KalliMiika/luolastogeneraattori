@@ -31,7 +31,8 @@ public class CaveGenerator {
         while (checkCollisions() > 0) {                     //Huoneiden törmäilysimulaatio
         }                    
         corridors = new Delaunay().triangulate(rooms).clearDuplicates();
-        corridors = new SpanningTrees().basic(rooms, corridors);
+        //corridors = new SpanningTrees().basic(rooms, corridors);
+        corridors = new SpanningTrees().random(rooms, corridors);
         
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
         //Graph graph = new Graph();
