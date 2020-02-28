@@ -25,6 +25,10 @@ public class Corridor {
     private Point goal;
     private final Point[] directions = {new Point(0, 1), new Point(0, -1), new Point(1, 0), new Point(-1, 0)};
 
+    /**
+     * Generoidaan käytävä huoneesta 'from' huoneeseen 'to' A* -haulla,
+     * liikkuminen rajoitettu ylös - alas, vasen - oikea
+     */
     public void drawCorridorWithPriorityList() {
         System.out.println((char)(97+this.from.getId()) + " -> " + (char)(97+this.to.getId()));
         findStartAndGoal();
@@ -64,6 +68,10 @@ public class Corridor {
         }
     }
     
+    /**
+     * Generoidaan käytävä huoneesta 'from' huoneeseen 'to' A* -haulla,
+     * liikkuminen pysty- ja vaakasuunnassa, sekä kulmittain sallittu
+     */
     public void drawCorridorWithPriorityListAllowDiagonal() {
         findStartAndGoal();
         Cave.getInstance().map[start.getY()][start.getX()] = '+';
@@ -104,6 +112,12 @@ public class Corridor {
     
     }
 
+    /**
+     * Etsitään se seinäruutu, joka on lähimpänä päämäärää,
+     * sen jälkeen tutkitaan onko lähettyvillä muita jo olemassa olevia ovia
+     *  jos on, valitaan jo olemassa oleva ovi
+     * jos ei, korvataan käytetty seinäpala ovella
+     */
     private void findStartAndGoal() {
         Point start = from.getCenter();
         double curDistance = start.dist(this.to.getCenter());
@@ -171,6 +185,10 @@ public class Corridor {
         this.goal = goal;
     }
 
+    /**
+     * Yksinkertainen L-muotoisten käytävien generoimis algoritmi joka ei väist
+     * seiniä
+     */
     public void drawCorridor() {
         Point step = from.getCenter();
         Point goal = to.getCenter();
@@ -206,6 +224,12 @@ public class Corridor {
 
     }
 
+    /**
+     * Vertaa onko parametrina annetulla Corridor-objektilla samat päätepisteet,
+     * kuin tällä
+     * @param corridor  Corridor    Tarkasteltava Corridor -objekti
+     * @return true jos päätepisteet ovat samat, false muutoin
+     */
     public boolean equals(Corridor corridor) {
         if (this.from.getId() == corridor.getFrom().getId() && this.to.getId() == corridor.getTo().getId()) {
             return true;

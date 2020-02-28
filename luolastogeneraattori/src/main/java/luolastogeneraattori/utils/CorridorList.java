@@ -12,6 +12,10 @@ public class CorridorList {
         pointer = 0;
     }
 
+    /**
+     * Lisää parametrina annettu Corridor -objekti listaan
+     * @param c     Corridor lisättävä Corridor -objekti
+     */
     public void add(Corridor c) {
         list[pointer] = c;
         pointer++;
@@ -20,10 +24,19 @@ public class CorridorList {
         }
     }
     
+    /**
+     * Palauttaa indeksiä vastaavan Corridor -objektin listasta
+     * @param i     int Palautettavan Corridor -Objektin indeksi
+     * @return Corridor Indexiä vastaava Corridor -Objekti
+     */
     public Corridor get(int i) {
         return list[i];
     }
     
+    /**
+     * Palauttaa trimmatun taulukon listan sisällöstä
+     * @return  Corridor[] trimmattu taulukko listan sisällöstä
+     */
     public Corridor[] toArray() {
         Corridor[] ret = new Corridor[pointer];
         for (int i = 0; i < pointer; i++) {
@@ -32,6 +45,10 @@ public class CorridorList {
         return ret;
     }
     
+    /**
+     * Poistaa parametrina annetun Corridor -Objektin listasta
+     * @param cor   Corridor    Poistettava Corridor -Objekti
+     */
     public void remove(Corridor cor) {
         Corridor[] newList = new Corridor[list.length];
         int fromIndex = 0;
@@ -50,10 +67,19 @@ public class CorridorList {
         list = newList;
     }
     
+    /**
+     * Palauttaa listan koon
+     * @return  int Listan koko
+     */
     public int size() {
         return pointer;
     }
 
+    /**
+     * Tarkistaa löytyykö parametrina annettu Corridor -Objekti listasta
+     * @param c     Corridor tarkasteltava Corridor -Objekti
+     * @return  true jos löytyy, false muutoin
+     */
     public boolean contains(Corridor c) {
         for (int i = 0; i < pointer; i++) {
             if (list[i].equals(c)) {
@@ -63,6 +89,10 @@ public class CorridorList {
         return false;
     }
     
+    /**
+     * Poistaa duplikaatit listasta
+     * @return Käsitelty lista
+     */
     public CorridorList clearDuplicates() {
         CorridorList newList = new CorridorList();
         for (int i = 0; i < pointer; i++) {

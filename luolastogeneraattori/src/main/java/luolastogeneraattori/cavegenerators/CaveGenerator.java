@@ -19,7 +19,9 @@ public class CaveGenerator {
      * 2. Ajetaan simulaatio jossa huoneet kimpoilevat seinistä ja toisistaan törmätessään,
      *      kunnes törmäilyjä ei enään tapahdu. Oletetaan, että tällöin yksikään huone ei
      *      ole toisen huoneen päällä tai osittain seinän sisällä.
-     * 
+     * 3. Muodostetaan generoiduista huoneista verkko Delaunay Triangulation algoritmilla
+     * 4. Muodostetaan generoidusta verkosta virittävä puu
+     * 5. generoidaan käytävät a* haulla
      */
     public void generateMap(int roomsToGenerate) {
         this.rooms = new Room[roomsToGenerate];             //Alustetaan Room[] rooms sopivan kokoiseksi

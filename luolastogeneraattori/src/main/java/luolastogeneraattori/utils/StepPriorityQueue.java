@@ -12,6 +12,10 @@ public class StepPriorityQueue {
         pointer = 0;
     }
 
+    /**
+     * Lisää parametrina annetun Step -objektin listaan
+     * @param s Step lisättävä Step-objekti
+     */
     public void add(Step s) {
         Step[] newList = new Step[list.length];
         int from = 0;
@@ -39,25 +43,33 @@ public class StepPriorityQueue {
         }
     }
     
+    /**
+     * Palauttaa päällimmäisen Step -Objektin
+     * @return Step
+     */
     public Step pop() {
         Step ret = list[0];
         remove(ret);
         return ret;
     }
     
-    public Step get(int i) {
-        return list[i];
+    /**
+     * Palauttaa jonon koon
+     * @return 
+     */
+    public int size() {
+        return pointer;
     }
     
-    public Step[] toArray() {
-        Step[] ret = new Step[pointer];
-        for (int i = 0; i < pointer; i++) {
-            ret[i] = list[i];
+    private void expand() {
+        Step[] newList = new Step[list.length * 2];
+        for (int i = 0; i < list.length; i++) {
+            newList[i] = list[i];
         }
-        return ret;
+        list = newList;
     }
     
-    public void remove(Step s) {
+    private void remove(Step s) {
         Step[] newList = new Step[list.length];
         int fromIndex = 0;
         int toIndex = 0;
@@ -72,27 +84,6 @@ public class StepPriorityQueue {
             fromIndex++;
         }
         pointer = newPointer;
-        list = newList;
-    }
-    
-    public int size() {
-        return pointer;
-    }
-
-    public boolean contains(Step s) {
-        for (int i = 0; i < pointer; i++) {
-            if (list[i].equals(s)) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    private void expand() {
-        Step[] newList = new Step[list.length * 2];
-        for (int i = 0; i < list.length; i++) {
-            newList[i] = list[i];
-        }
         list = newList;
     }
     

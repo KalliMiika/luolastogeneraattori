@@ -3,7 +3,6 @@ package luolastogeneraattori.utils;
 
 import luolastogeneraattori.objects.Point;
 
-
 public class Step {
     
     private Point point;

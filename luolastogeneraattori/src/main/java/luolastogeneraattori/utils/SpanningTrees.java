@@ -6,6 +6,18 @@ import luolastogeneraattori.objects.Room;
 
 public class SpanningTrees {
 
+    
+    /**
+     * 1. Lisätään Room -taulukon ensimmäinen alkio Room kekoon
+     * 2. loopataan niin kauan kunnes keko on tyhjä
+     *  3. otetaan keon päällimmäinen Room -Objekti 
+     *  4. etsitään kaikki ne käytävät, jotka vievät johonkin toiseen huoneeseen,
+     *     jossa ei olla vielä käyty ja lisätään uudet huoneet Room kekoon
+     * 5. Lisätään sattumanvaraisesti huoneita, joita ei valittu algoritmissa
+     * @param rooms     Room[] 
+     * @param corridors CorridorList
+     * @return CorridorList     Virittävän puun + muutaman extran muodostavat Corridor -Objektit
+     */
     public CorridorList basic(Room[] rooms, CorridorList corridors) {
         CorridorList newCorridors = new CorridorList();
         boolean[] help = new boolean[rooms.length];
@@ -40,6 +52,16 @@ public class SpanningTrees {
         return newCorridors;
     }
 
+    /**
+     * 1. Otetaan random Room Objekti Room[] taulusta
+     * 2. Etsitään kaikki ne käytävät, jotka johtavat huoneeseen jossa ei olla vielä käyty
+     * 3. Valitaan löydetyistä käytävistä randomilla yksi ja tarkastellaan sitä huonetta, johon se johtaa
+     * 4. Toistetaan steppejä 2. ja 3. kunnes ollaan löydetty kaikki huoneet
+     * 5. lisätään osa niistä käytävistä joita ei valittu
+     * @param rooms     Room[]
+     * @param corridors CorridorList
+     * @return CorridorList     Randomilla generoitu virittävä puu + muutama extran muodostavat corridor -objektit
+     */
     public CorridorList random(Room[] rooms, CorridorList corridors) {
         CorridorList newCorridors = new CorridorList();
         boolean[] help = new boolean[rooms.length];
