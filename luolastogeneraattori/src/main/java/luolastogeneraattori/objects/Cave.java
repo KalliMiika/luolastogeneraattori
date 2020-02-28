@@ -12,8 +12,8 @@ public class Cave {
      * Luolastongeneroinnissa käytettävien karttojen
      * Leveys ja Korkeus
      */
-    public static final int WIDTH = 64;
-    public static final int HEIGHT = 32;
+    public static final int WIDTH = 88;
+    public static final int HEIGHT = 44;
 
     char[][] map;
 
@@ -68,8 +68,10 @@ public class Cave {
         char[][] map = new char[HEIGHT][WIDTH];
         for (int row = 0; row < HEIGHT; row++) {
             for (int column = 0; column < WIDTH; column++) {
-                if (row == 0 || column == 0 || row == HEIGHT - 1 || column == WIDTH - 1) {
-                    map[row][column] = '#';
+                if (column == 0 || column == WIDTH - 1) {
+                    map[row][column] = '|';
+                } else if (row == 0 || row == HEIGHT - 1) {
+                    map[row][column] = '-';
                 } else {
                     map[row][column] = ' ';
                 }

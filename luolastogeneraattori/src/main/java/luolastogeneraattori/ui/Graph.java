@@ -10,17 +10,18 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import luolastogeneraattori.objects.Corridor;
 import luolastogeneraattori.objects.Room;
+import luolastogeneraattori.utils.CorridorList;
 
 public class Graph extends Application {
 
-    private static final int WIDTH = 1200;
-    private static final int HEIGHT = 800;
+    private static final int WIDTH = 1400;
+    private static final int HEIGHT = 1400;
 
     private Stage stage;
     private Pane screen;
     private Scene menu;
     
-    private static ArrayList<Corridor> corridors;
+    private static CorridorList corridors;
     private static Room[] rooms;
 
     @Override
@@ -33,7 +34,7 @@ public class Graph extends Application {
         gc.setStroke(Color.GREEN);
         gc.setLineWidth(3);
 
-        for (Corridor c : corridors) {
+        for (Corridor c : corridors.toArray()) {
             System.out.println(c.getFrom().getId() + " - " + c.getTo().getId());
             gc.strokeLine(c.getFrom().getCenter().getX()*15, c.getFrom().getCenter().getY()*15, c.getTo().getCenter().getX()*15, c.getTo().getCenter().getY()*15);
         }
@@ -43,7 +44,7 @@ public class Graph extends Application {
         stage.show();
     }
     
-    public static void main(Room[] param1, ArrayList<Corridor> param2) {
+    public static void main(Room[] param1, CorridorList param2) {
         rooms = param1;
         corridors = param2;
         launch();

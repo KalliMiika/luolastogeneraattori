@@ -10,8 +10,8 @@ public class Delaunay {
     private ArrayList<Room> rooms = new ArrayList<>();
     private int roomCount;
     private int trmax;
-    private ArrayList<Corridor> edges = new ArrayList<>();
-    private ArrayList<Triangle> triangles = new ArrayList<>();
+    private CorridorList edges = new CorridorList();
+    private TriangleList triangles = new TriangleList();
 
     /**
      * Metodi laskee Triangule -metodille alkuarvot
@@ -77,20 +77,20 @@ public class Delaunay {
      * @param rooms Room[] Tarkasteltavan verkon solmut
      * @return ArrayList<Corridor> Solmujen välille generoidut kaaret
      */
-    public ArrayList<Corridor> triangulate(Room[] rooms) {
+    public CorridorList triangulate(Room[] rooms) {
         setup(rooms);
         if (roomCount <= 2) {
             //ei toimi
             return null;
         } else if (roomCount == 3) {
-            edges = new ArrayList<>();
+            edges = new CorridorList();
             edges.add(new Corridor(rooms[0], rooms[1]));
             edges.add(new Corridor(rooms[0], rooms[2]));
             edges.add(new Corridor(rooms[2], rooms[1]));
             return edges;
         }
         for (int i = 0; i < roomCount; i++) {
-            edges = new ArrayList<>();
+            edges = new CorridorList();
             for (int j = triangles.size() - 1; j >= 0; j--) {
                 Triangle triangle = triangles.get(j);
                 if (triangle.pointIsWithinCircumCircle(rooms[i].getCenter())) {
@@ -101,7 +101,7 @@ public class Delaunay {
                 }
             }
 
-            ArrayList<Corridor> setForDel = new ArrayList<>();
+            CorridorList setForDel = new CorridorList();
             for (int j = edges.size() - 2; j >= 0; j--) {
                 for (int k = edges.size() - 1; k >= j + 1; k--) {
                     if (j != k && edges.get(j).equals(edges.get(k))) {
@@ -110,7 +110,7 @@ public class Delaunay {
                     }
                 }
             }
-            for (Corridor c : setForDel) {
+            for (Corridor c : setForDel.toArray()) {
                 edges.remove(c);
             }
 
@@ -118,7 +118,7 @@ public class Delaunay {
                 triangles.add(new Triangle(edges.get(j).getFrom(), edges.get(j).getTo(), rooms[i]));
             }
         }
-        edges = new ArrayList<>();
+        edges = new CorridorList();
         for (int i = triangles.size() - 1; i >= 0; i--) {
             Triangle tmp = triangles.get(i);
             if (tmp.getVertex1().getId() >= 1000 || tmp.getVertex2().getId() >= 1000 || tmp.getVertex3().getId() >= 1000) {

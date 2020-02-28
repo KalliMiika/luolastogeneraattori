@@ -1,7 +1,7 @@
 
-import java.util.ArrayList;
 import luolastogeneraattori.objects.Corridor;
 import luolastogeneraattori.objects.Room;
+import luolastogeneraattori.utils.CorridorList;
 import luolastogeneraattori.utils.Delaunay;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -21,7 +21,7 @@ public class DelaunayTest {
         for (int i = 0; i < roomsToGenerate; i++) {
             rooms[i] = Room.generateRandomRoom(i);
         }
-        ArrayList<Corridor> cors = new Delaunay().triangulate(rooms);
+        CorridorList cors = new Delaunay().triangulate(rooms);
         corridors = new Corridor[cors.size()];
         for (int i = 0; i< cors.size(); i++) {
             corridors[i] = cors.get(i);

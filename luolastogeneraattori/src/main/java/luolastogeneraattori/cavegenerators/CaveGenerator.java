@@ -1,12 +1,17 @@
 package luolastogeneraattori.cavegenerators;
 
+import luolastogeneraattori.objects.Cave;
+import luolastogeneraattori.objects.Corridor;
 import luolastogeneraattori.objects.Room;
-import luolastogeneraattori.utils.Delaunay;
 import luolastogeneraattori.ui.Graph;
+import luolastogeneraattori.utils.Delaunay;
+import luolastogeneraattori.utils.CorridorList;
+import luolastogeneraattori.utils.SpanningTrees;
 
 public class CaveGenerator {
     
     private Room[] rooms;
+    private CorridorList corridors;
     
     /**
      * Tämän huoneengenerointi algoritmin päämetodi
@@ -23,9 +28,13 @@ public class CaveGenerator {
         }
         while (checkCollisions() > 0) {                     //Huoneiden törmäilysimulaatio
         }                    
+        corridors = new Delaunay().triangulate(rooms).clearDuplicates();
+        corridors = new SpanningTrees().random(rooms, corridors);
+        
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
-        Graph graph = new Graph();
-        graph.main(rooms, new Delaunay().triangulate(rooms));
+        //Graph graph = new Graph();
+                 
+        //graph.main(rooms, corridors);
     }
     
     /**
@@ -56,6 +65,22 @@ public class CaveGenerator {
         }
         for (Room room : this.rooms) {
             room.drawRoom();
+        } 
+//        for (char[] ca : Cave.getInstance().getMap()) {
+//            for (char c : ca) {
+//                System.out.print(c);
+//            }
+//            System.out.println("");
+//        }
+        for (Corridor corridor : this.corridors.toArray()) {
+            corridor.drawCorridorWithPriorityListAllowDiagonal();
+        }
+       // corridors.get(0).drawCorridorWithPriorityList();
+        for (char[] ca : Cave.getInstance().getMap()) {
+            for (char c : ca) {
+                System.out.print(c);
+            }
+            System.out.println("");
         }
     }
     

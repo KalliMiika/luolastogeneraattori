@@ -59,16 +59,16 @@ public class Triangle {
         Point a = vertex1.getCenter();
         Point b = vertex2.getCenter();
         Point c = vertex3.getCenter();
-        double ab = norm(vertex1.getCenter());
-        double cd = norm(vertex2.getCenter());
-        double ef = norm(vertex3.getCenter());
+        double ab = norm(a);
+        double cd = norm(b);
+        double ef = norm(c);
 
-        double ax = vertex1.getCenter().getX();
-        double ay = vertex1.getCenter().getY();
-        double bx = vertex2.getCenter().getX();
-        double by = vertex2.getCenter().getY();
-        double cx = vertex3.getCenter().getX();
-        double cy = vertex3.getCenter().getY();
+        double ax = a.getX();
+        double ay = a.getY();
+        double bx = b.getX();
+        double by = b.getY();
+        double cx = c.getX();
+        double cy = c.getY();
 
         double circum_x = (ab * (cy - by) + cd * (ay - cy) + ef * (by - ay)) / (ax * (cy - by) + bx * (ay - cy) + cx * (by - ay));
         double circum_y = (ab * (cx - bx) + cd * (ax - cx) + ef * (bx - ax)) / (ay * (cx - bx) + by * (ax - cx) + cy * (bx - ax));
