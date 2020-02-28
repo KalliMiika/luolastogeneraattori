@@ -33,7 +33,6 @@ public class CaveGenerator {
         
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
         //Graph graph = new Graph();
-                 
         //graph.main(rooms, corridors);
     }
     
@@ -57,30 +56,14 @@ public class CaveGenerator {
      * Metodi piirtää generoidut huoneet Cave-Olion kartalle
      */
     private void draw() {
-//        for (Room room : this.rooms) {
-//            room.drawCircle();
-//        }
         for (Room room : this.rooms) {
             room.drawCenter();
         }
         for (Room room : this.rooms) {
             room.drawRoom();
         } 
-//        for (char[] ca : Cave.getInstance().getMap()) {
-//            for (char c : ca) {
-//                System.out.print(c);
-//            }
-//            System.out.println("");
-//        }
         for (Corridor corridor : this.corridors.toArray()) {
             corridor.drawCorridorWithPriorityListAllowDiagonal();
-        }
-       // corridors.get(0).drawCorridorWithPriorityList();
-        for (char[] ca : Cave.getInstance().getMap()) {
-            for (char c : ca) {
-                System.out.print(c);
-            }
-            System.out.println("");
         }
     }
     

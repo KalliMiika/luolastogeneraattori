@@ -18,10 +18,8 @@ public class Main {
 //        drawMap(cave.getMap());
 //        System.out.println("================================================================");
 //        System.out.println("================================================================");
-//        for (int i = 0; i < 1000; i++) {
-            cave = Cave.generateUsingCaveGenerator();
-//        }
-        //drawMap(cave.getMap());
+        cave = Cave.generateUsingCaveGenerator();
+        drawMap(cave.getMap());
     }
 
     private static void drawMap(char[][] map) {

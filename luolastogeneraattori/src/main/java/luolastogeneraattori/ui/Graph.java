@@ -35,7 +35,7 @@ public class Graph extends Application {
         gc.setLineWidth(3);
 
         for (Corridor c : corridors.toArray()) {
-            System.out.println(c.getFrom().getId() + " - " + c.getTo().getId());
+            //System.out.println(c.getFrom().getId() + " - " + c.getTo().getId());
             gc.strokeLine(c.getFrom().getCenter().getX()*15, c.getFrom().getCenter().getY()*15, c.getTo().getCenter().getX()*15, c.getTo().getCenter().getY()*15);
         }
         screen.getChildren().add(canvas);
