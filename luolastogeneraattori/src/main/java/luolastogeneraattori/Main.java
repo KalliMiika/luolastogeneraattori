@@ -8,7 +8,7 @@ import luolastogeneraattori.objects.Room;
 public class Main {
 
     public static void main(String[] args) {
-        //Cave cave = new Cave();
+        Cave cave = new Cave();
 //        cave = Cave.generateUsingCellularAutomata();
 //        drawMap(cave.getMap());
 //        System.out.println("================================================================");
@@ -21,15 +21,7 @@ public class Main {
 //        drawMap(cave.getMap());
 //        System.out.println("================================================================");
 //        System.out.println("================================================================");
-        //cave = Cave.generateUsingCaveGenerator();
-        //drawMap(cave.getMap());
-        Cave cave = new Cave();
-        Room r1 = new Room(new Point(10, 30), 3, 3, 6, 0);
-        r1.drawRoom();
-        Room r2 = new Room(new Point(30, 10), 3, 3, 6, 1);
-        r2.drawRoom();
-        Corridor c = new Corridor(r1, r2);
-        c.drawCorridorWithPriorityListAllowDiagonal();
+        cave = Cave.generateUsingCaveGenerator();
         drawMap(cave.getMap());
     }
 

@@ -7,7 +7,6 @@ import luolastogeneraattori.objects.Room;
 
 public class Delaunay {
 
-    private ArrayList<Room> rooms = new ArrayList<>();
     private int roomCount;
     private int trmax;
     private CorridorList edges = new CorridorList();
@@ -19,16 +18,13 @@ public class Delaunay {
      * @param rooms Room[] Tuotettavan verkon solmut
      */
     private void setup(Room[] rooms) {
-        for (Room r : rooms) {
-            this.rooms.add(r);
-        }
-        roomCount = this.rooms.size();
+        roomCount = rooms.length;
         trmax = roomCount * 4;
-        int minX = this.rooms.get(0).getCenter().getX();
-        int minY = this.rooms.get(0).getCenter().getY();
+        int minX = rooms[0].getCenter().getX();
+        int minY = rooms[0].getCenter().getY();
         int maxX = minY;
         int maxY = minX;
-        for (Room r : this.rooms) {
+        for (Room r : rooms) {
             minX = Math.min(minX, r.getCenter().getX());
             minY = Math.min(minY, r.getCenter().getY());
             maxX = Math.max(maxX, r.getCenter().getX());
@@ -49,9 +45,6 @@ public class Delaunay {
         Room p3 = new Room();
         p3.setCenter(new Point(midX + (2 * deltaMax), midY - deltaMax));
         p3.setId(1002);
-        this.rooms.add(p1);
-        this.rooms.add(p2);
-        this.rooms.add(p3);
         triangles.add(new Triangle(p1, p2, p3));
     }
 

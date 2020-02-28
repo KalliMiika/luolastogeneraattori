@@ -35,7 +35,7 @@ public class CaveGenerator {
         
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
         //Graph graph = new Graph();
-        //graph.main(rooms, corridors);
+       // graph.main(rooms, corridors);
     }
     
     /**
