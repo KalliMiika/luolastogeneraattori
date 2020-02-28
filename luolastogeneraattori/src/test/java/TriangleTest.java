@@ -24,6 +24,10 @@ public class TriangleTest {
     
     @Test
     public void pointIsFoundInsideCircumcircle(){
+        triangle = new Triangle();
+        triangle.setVertex1(new Room(new Point(5, 5), 0, 0, 0, 0));
+        triangle.setVertex2(new Room(new Point(15, 5), 0, 0, 0, 1));
+        triangle.setVertex3(new Room(new Point(5, 15), 0, 0, 0, 2));
         Point A = triangle.getVertex1().getCenter();
         Point B = triangle.getVertex2().getCenter();
         Point AB = new Point((A.getX() + B.getX()) / 2 , (A.getY() + B.getY()) / 2);

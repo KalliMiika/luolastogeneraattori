@@ -97,16 +97,12 @@ public class RoomTest {
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
         };
         Point[] verticalWalls = {
-            new Point(5, 6),
-            new Point(9, 6),
             new Point(5, 7),
             new Point(9, 7),
             new Point(5, 8),
             new Point(9, 8),
             new Point(5, 9),
-            new Point(9, 9),
-            new Point(5, 10),
-            new Point(9, 10)
+            new Point(9, 9)
         };
         Point[] horizontalWalls = {
             new Point(6, 6),
@@ -115,6 +111,12 @@ public class RoomTest {
             new Point(6, 10),
             new Point(7, 10),
             new Point(8, 10)
+        };
+        Point[] corners = {
+            new Point(5, 6),
+            new Point(9, 6),
+            new Point(5, 10),
+            new Point(9, 10)
         };
         Cave cave = new Cave(testMap);
         Room room = new Room(new Point(7, 8), 3, 3, 5, 0);
@@ -128,6 +130,11 @@ public class RoomTest {
         }
         for (Point p : horizontalWalls) {
             if (map[p.getY()][p.getX()] != '-') {
+                result = false;
+            }
+        }
+        for (Point p : corners) {
+            if (map[p.getY()][p.getX()] != '!') {
                 result = false;
             }
         }
@@ -156,6 +163,9 @@ public class RoomTest {
     public void CollisionBetweenRoomAndAWallDetectedCorrectly() {
         Room r1 = new Room(new Point(1, 1), 3, 3, 5, 0);
         int collision = r1.checkCollisionWithWalls();
+        assertEquals(2, collision);
+        Room r2 = new Room(new Point(Cave.WIDTH-2, Cave.HEIGHT-2), 3, 3, 5, 0);
+        collision = r2.checkCollisionWithWalls();
         assertEquals(2, collision);
     }
 }

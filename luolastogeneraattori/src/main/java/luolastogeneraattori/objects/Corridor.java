@@ -30,7 +30,6 @@ public class Corridor {
      * liikkuminen rajoitettu ylös - alas, vasen - oikea
      */
     public void drawCorridorWithPriorityList() {
-        System.out.println((char)(97+this.from.getId()) + " -> " + (char)(97+this.to.getId()));
         findStartAndGoal();
         Cave.getInstance().map[start.getY()][start.getX()] = '+';
         Cave.getInstance().map[goal.getY()][goal.getX()] = '+';

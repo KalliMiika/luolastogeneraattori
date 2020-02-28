@@ -230,13 +230,4 @@ public class Room {
         }
         return new Point(Math.cos(Math.toRadians(angle)), Math.sin(Math.toRadians(angle)));
     }
-
-    /**
-     * Metodi joka palauttaa tekstimuotoisen kuvauksen Room-Oliosta
-     *
-     * @return String tekstimuotoinen kuvaus tästä Room-Oliosta
-     */
-    public String toString() {
-        return "Room " + (char)this.id + ": " + "Center=" + center.toString() + " WIDTH=" + width + " HEIGHT=" + height;
-    }
 }

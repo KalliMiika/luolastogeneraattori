@@ -27,7 +27,8 @@
                 <version>0.8.0</version>
                 <configuration>
                     <excludes>
-                        <exclude>luolastogeneraattori/*</exclude>
+                        <exclude>luolastogeneraattori/cavegenerators/*</exclude>
+                        <exclude>luolastogeneraattori/Main.class</exclude>
                         <exclude>luolastogeneraattori/ui/*</exclude>
                     </excludes>
                 </configuration>
