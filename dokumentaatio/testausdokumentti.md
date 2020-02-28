@@ -92,3 +92,27 @@ Graph:
 ```
 - Delaunay -Algoritmin generoima verkko
 <img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/delaunay.png"/>
+
+```
+Käytetyt Parametrit:
+Cave:
+  WIDTH=88
+  HEIGHT=44
+Cave.generateUsingCaveGenerator():
+  roomsToGenerate=12
+CaveGenerator:
+  Virittävä puu = new SpanningTrees().basic(rooms, corridors);
+```
+<img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/virittavaPuuBasic.png"/>
+
+```
+Käytetyt Parametrit:
+Cave:
+  WIDTH=88
+  HEIGHT=44
+Cave.generateUsingCaveGenerator():
+  roomsToGenerate=12
+CaveGenerator:
+  Virittävä puu = new SpanningTrees().random(rooms, corridors);
+```
+<img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/virittavapuuRandom.png"/>
