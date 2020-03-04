@@ -90,9 +90,6 @@ public class Room {
         int xEnd = this.center.getX() + (this.width + 1) / 2;
         for (int row = yStart - 1; row < yEnd + 1; row++) {
             for (int column = xStart - 1; column < xEnd + 1; column++) {
-                if (new Point(column, row).equals(center)) {
-                    continue;
-                }
                 if ((column >= xStart && column < xEnd) && (row == yStart - 1 || row == yEnd)) {
                     Cave.getInstance().map[row][column] = '-';
                 } else if ((column == xStart - 1 || column == xEnd) && (row == yStart - 1 || row == yEnd)) {

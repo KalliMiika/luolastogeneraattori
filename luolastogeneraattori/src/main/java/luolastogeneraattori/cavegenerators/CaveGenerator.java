@@ -1,6 +1,7 @@
 package luolastogeneraattori.cavegenerators;
 
 import luolastogeneraattori.objects.Corridor;
+import luolastogeneraattori.objects.Raport;
 import luolastogeneraattori.objects.Room;
 import luolastogeneraattori.utils.Delaunay;
 import luolastogeneraattori.utils.CorridorList;
@@ -21,20 +22,34 @@ public class CaveGenerator {
      * 4. Muodostetaan generoidusta verkosta virittävä puu
      * 5. generoidaan käytävät a* haulla
      */
-    public void generateMap(int roomsToGenerate) {
+    public Raport generateMap(int roomsToGenerate, String spanningTreeType, int treeCutOff) {
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long t1 = System.currentTimeMillis();
         this.rooms = new Room[roomsToGenerate];             //Alustetaan Room[] rooms sopivan kokoiseksi
         for (int i = 0; i < roomsToGenerate; i++) {         //Generoidaan satunnaiset huoneet
             this.rooms[i] = Room.generateRandomRoom(i);
         }
         while (checkCollisions() > 0) {                     //Huoneiden törmäilysimulaatio
-        }                    
-        corridors = new Delaunay().triangulate(rooms).clearDuplicates();
-        //corridors = new SpanningTrees().basic(rooms, corridors);
-        corridors = new SpanningTrees().random(rooms, corridors, roomsToGenerate);
+        }            
+        
+        corridors = new Delaunay().triangulate(rooms).clearDuplicates();        
+        switch (spanningTreeType) {
+            case "BASIC":
+                corridors = new SpanningTrees().basic(rooms, corridors, roomsToGenerate, treeCutOff);
+                break;
+            case "RANDOM":
+                corridors = new SpanningTrees().random(rooms, corridors, roomsToGenerate, treeCutOff);
+                break;
+            default:
+                break;
+        }
+        //corridors = new SpanningTrees().random(rooms, corridors, roomsToGenerate);
         
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
-       // Graph graph = new Graph();
-       // graph.main(rooms, corridors);
+        long actualTimeSpent = System.currentTimeMillis() - t1;
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        return new Raport(actualTimeSpent, actualMemUsed);
     }
     
     /**
@@ -58,13 +73,10 @@ public class CaveGenerator {
      */
     private void draw() {
         for (Room room : this.rooms) {
-            room.drawCenter();
-        }
-        for (Room room : this.rooms) {
             room.drawRoom();
         } 
         for (Corridor corridor : this.corridors.toArray()) {
-            corridor.drawCorridorWithPriorityListAllowDiagonal();
+            corridor.drawCorridorWithPriorityList();
         }
     }
     

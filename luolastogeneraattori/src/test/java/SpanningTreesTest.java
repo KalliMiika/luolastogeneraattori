@@ -23,7 +23,7 @@ public class SpanningTreesTest {
             rooms[i] = Room.generateRandomRoom(i);
         }
         CorridorList corridors = new Delaunay().triangulate(rooms);
-        corridors = new SpanningTrees().basic(rooms, corridors);
+        corridors = new SpanningTrees().basic(rooms, corridors, 10);
         boolean[] help = new boolean[rooms.length];
         for (Corridor c : corridors.toArray()) {
             help[c.getFrom().getId()] = true;
@@ -41,7 +41,7 @@ public class SpanningTreesTest {
             rooms[i] = Room.generateRandomRoom(i);
         }
         CorridorList corridors = new Delaunay().triangulate(rooms);
-        corridors = new SpanningTrees().random(rooms, corridors);
+        corridors = new SpanningTrees().random(rooms, corridors, 10);
         boolean[] help = new boolean[rooms.length];
         for (Corridor c : corridors.toArray()) {
             help[c.getFrom().getId()] = true;

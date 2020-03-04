@@ -18,7 +18,7 @@ public class SpanningTrees {
      * @param corridors CorridorList
      * @return CorridorList     Virittävän puun + muutaman extran muodostavat Corridor -Objektit
      */
-    public CorridorList basic(Room[] rooms, CorridorList corridors, int maxRoomId) {
+    public CorridorList basic(Room[] rooms, CorridorList corridors, int maxRoomId, int treeCutOff) {
         CorridorList newCorridors = new CorridorList();
         boolean[] help = new boolean[maxRoomId];
         RoomStack rs = new RoomStack();
@@ -43,9 +43,8 @@ public class SpanningTrees {
             }
         }
         Random rnd = new Random();
-        int cutoff = 20;
         for (Corridor c : corridors.toArray()) {
-            if (!newCorridors.contains(c) && rnd.nextInt(100) < cutoff) {
+            if (!newCorridors.contains(c) && rnd.nextInt(100) < treeCutOff) {
                 newCorridors.add(c);
             }
         }
@@ -62,7 +61,7 @@ public class SpanningTrees {
      * @param corridors CorridorList
      * @return CorridorList     Randomilla generoitu virittävä puu + muutama extran muodostavat corridor -objektit
      */
-    public CorridorList random(Room[] rooms, CorridorList corridors, int maxRoomId) {
+    public CorridorList random(Room[] rooms, CorridorList corridors, int maxRoomId, int treeCutOff) {
         CorridorList newCorridors = new CorridorList();
         boolean[] help = new boolean[maxRoomId];
         Random rnd = new Random();
@@ -104,9 +103,8 @@ public class SpanningTrees {
                 counter++;
             }
         }
-        int cutoff = 20;
         for (Corridor c : corridors.toArray()) {
-            if (!newCorridors.contains(c) && rnd.nextInt(100) < cutoff) {
+            if (!newCorridors.contains(c) && rnd.nextInt(100) < treeCutOff) {
                 newCorridors.add(c);
             }
         }

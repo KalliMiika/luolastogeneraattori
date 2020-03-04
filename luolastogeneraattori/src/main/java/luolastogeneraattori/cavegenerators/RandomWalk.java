@@ -29,7 +29,7 @@ public class RandomWalk {
      */
     public static char[][] generateMap(int maxTunnels, int maxTunnelLength, int minTunnelLength) {
         Random rnd = new Random();
-        char[][] map = Cave.generateEmptyMap();
+        char[][] map = Cave.generateBlankMapWithBorders();
         boolean currentDirection = true;
         Point location = Point.randomPoint();
         map[location.getY()][location.getX()] = '.';

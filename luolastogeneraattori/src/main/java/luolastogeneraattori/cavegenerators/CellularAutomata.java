@@ -14,8 +14,15 @@ public class CellularAutomata {
      * @param wallPercentage Todennäköisyys että ruutu on seinäpala luola-pohjan generoinnissa
      * @return Palauttaa CellularAutomatalla generoidun char[][] luolaston
      */
-    public static char[][] generateMap(int wallPercentage) {
+    public static char[][] generateMap(int wallPercentage, int iterations, int wallSearchRange1, int wallCutOff1, int wallSearchRange2, int wallCutOff2) {
         char[][] map = Cave.generateRandomMap(wallPercentage);
+        for (int i = 0; i < iterations; i++) {
+            if (i % 4 == 0) {
+                map = makeCaverns(map, wallSearchRange1, wallCutOff1, wallSearchRange2, wallCutOff2);
+            } else {
+                map = makeCaverns(map, wallSearchRange1, wallCutOff1, 0, 0);
+            }
+        }
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
         map = makeCaverns(map, 1, 5, 0, 0);
@@ -87,7 +94,7 @@ public class CellularAutomata {
                 wallCount = countAdjacentWalls(map, new Point(column, row), wallSearchRange1);
                 wallCount2 = countAdjacentWalls(map, new Point(column, row), wallSearchRange2);
                 if (wallCount >= wallCutOff1 || (wallCount2 <= wallCutOff2 && wallCutOff2 > 0)) {
-                    result[row][column] = '#';
+                    result[row][column] = ' ';
                 } else {
                     result[row][column] = '.';
                 }
@@ -116,7 +123,7 @@ public class CellularAutomata {
             for (column = start.getX(); column <= end.getX(); column++) {
                 if (row <= 0 || column <= 0 || row >= Cave.HEIGHT || column >= Cave.WIDTH) {
                     counter++;
-                } else if (map[row][column] == '#') {
+                } else if (map[row][column] == ' ') {
                     counter++;
                 }
             }

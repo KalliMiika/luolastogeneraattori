@@ -3,8 +3,8 @@ package luolastogeneraattori.cavegenerators;
 import luolastogeneraattori.objects.Cave;
 import luolastogeneraattori.objects.Corridor;
 import luolastogeneraattori.objects.Point;
+import luolastogeneraattori.objects.Raport;
 import luolastogeneraattori.objects.Room;
-import luolastogeneraattori.ui.Graph;
 import luolastogeneraattori.utils.CorridorList;
 import luolastogeneraattori.utils.Delaunay;
 import luolastogeneraattori.utils.RoomList;
@@ -17,7 +17,9 @@ public class TinyKeepish {
     private RoomList largeRooms;
     int[][] roomLocations;
 
-    public void generateMap(int roomsToGenerate, int rounds, int largeCutoff) {
+    public Raport generateMap(int roomsToGenerate, int rounds, int largeCutoff, String spanningTreeType, int treeCutOff) {
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long t1 = System.currentTimeMillis();
         generateRooms(roomsToGenerate, rounds);
         
         while (checkCollisions() > 0) {
@@ -25,8 +27,17 @@ public class TinyKeepish {
 
         findLargeRooms(largeCutoff);
 
-        corridors = new Delaunay().triangulate(largeRooms.toArray()).clearDuplicates();
-        corridors = new SpanningTrees().basic(largeRooms.toArray(), corridors, roomsToGenerate);
+        corridors = new Delaunay().triangulate(largeRooms.toArray()).clearDuplicates();    
+        switch (spanningTreeType) {
+            case "BASIC":
+                corridors = new SpanningTrees().basic(largeRooms.toArray(), corridors, roomsToGenerate, treeCutOff);
+                break;
+            case "RANDOM":
+                corridors = new SpanningTrees().random(largeRooms.toArray(), corridors, roomsToGenerate, treeCutOff);
+                break;
+            default:
+                break;
+        }
 
         fillGaps(roomsToGenerate);
         
@@ -34,8 +45,14 @@ public class TinyKeepish {
         
         rooms = generateResult();
         
-        Graph g = new Graph();
-        g.main(rooms, largeRooms, corridors);
+        Cave.getInstance().setMap(Cave.generateBlankMapWithBorders());
+        for (Room r : rooms.toArray()) {
+            r.drawRoomNoWalls();
+        }
+        long actualTimeSpent = System.currentTimeMillis() - t1;
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        return new Raport(actualTimeSpent, actualMemUsed);
     }
     
     private RoomList generateResult() {

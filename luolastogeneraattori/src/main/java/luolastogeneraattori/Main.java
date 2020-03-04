@@ -2,6 +2,7 @@ package luolastogeneraattori;
 
 import luolastogeneraattori.cavegenerators.TinyKeepish;
 import luolastogeneraattori.objects.Cave;
+import luolastogeneraattori.ui.Graph;
 
 public class Main {
 
@@ -19,10 +20,14 @@ public class Main {
 //        drawMap(cave.getMap());
 //        System.out.println("================================================================");
 //        System.out.println("================================================================");
-        //cave = Cave.generateUsingCaveGenerator();
+        //Cave.generateUsingCaveGenerator();
         //drawMap(cave.getMap());
-        new TinyKeepish().generateMap(100, 3, 30);
+        //new TinyKeepish().generateMap(100, 3, 30);
         //drawMap(cave.getMap());
+        
+        Graph g = new Graph();
+        //g.main(rooms, largeRooms, corridors);
+        g.main();
     }
 
     private static void drawMap(char[][] map) {

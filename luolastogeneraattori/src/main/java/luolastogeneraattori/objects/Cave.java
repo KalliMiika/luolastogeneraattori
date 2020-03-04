@@ -5,6 +5,7 @@ import java.util.Random;
 import luolastogeneraattori.cavegenerators.CaveGenerator;
 import luolastogeneraattori.cavegenerators.CellularAutomata;
 import luolastogeneraattori.cavegenerators.RandomWalk;
+import luolastogeneraattori.cavegenerators.TinyKeepish;
 
 public class Cave {
 
@@ -91,9 +92,9 @@ public class Cave {
         for (int column, row = 0; row < HEIGHT; row++) {
             for (column = 0; column < WIDTH; column++) {
                 if (row == 0 || column == 0 || row == HEIGHT - 1 || column == WIDTH - 1) {
-                    map[row][column] = '#';
+                    map[row][column] = ' ';
                 } else if (wallPercentage >= rnd.nextInt(100) + 1) {
-                    map[row][column] = '#';
+                    map[row][column] = ' ';
                 } else {
                     map[row][column] = '.';
                 }
@@ -114,8 +115,15 @@ public class Cave {
      * @param minTunnelLength   int     Kaivettavien tunneleiden minimipituus
      * @return                  Cave    Cave-Olio joka käyttää generoitua karttaa
      */
-    public static Cave generateUsingRandomWalk(int tunnelCount, int maxTunnelLength, int minTunnelLength) {
-        return new Cave(RandomWalk.generateMap(tunnelCount, maxTunnelLength, minTunnelLength));
+    public static Raport generateUsingRandomWalk(int tunnelCount, int maxTunnelLength, int minTunnelLength) {
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long timeBefore = System.currentTimeMillis();
+        new Cave(RandomWalk.generateMap(tunnelCount, maxTunnelLength, minTunnelLength));
+        long timeAfter = System.currentTimeMillis();
+        long actualTimeSpent = timeAfter - timeBefore;
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        return new Raport(actualTimeSpent, actualMemUsed);
     }
     
     /**
@@ -123,8 +131,15 @@ public class Cave {
      * RandomWalk-algoritmia default parametreilla
      * @return                  Cave    Cave-Olio joka käyttää generoitua karttaa
      */
-    public static Cave generateUsingRandomWalk() {
-        return new Cave(RandomWalk.generateMap(50, 8, 0));
+    public static Raport generateUsingRandomWalk() {
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long timeBefore = System.currentTimeMillis();
+        new Cave(RandomWalk.generateMap(50, 8, 0));
+        long timeAfter = System.currentTimeMillis();
+        long actualTimeSpent = timeAfter - timeBefore;
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        return new Raport(actualTimeSpent, actualMemUsed);
     }
     
     /**
@@ -132,8 +147,15 @@ public class Cave {
      * Cellular Automata-algoritmia default parametreilla
      * @return                  Cave    Cave-Olio joka käyttää generoitua karttaa
      */
-    public static Cave generateUsingCellularAutomata() {
-        return new Cave(CellularAutomata.generateMap(40));
+    public static Raport generateUsingCellularAutomata(int wallPercentage, int iterations, int wallSearchRange1, int wallCutOff1, int wallSearchRange2, int wallCutOff2) {
+        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long timeBefore = System.currentTimeMillis();
+        new Cave(CellularAutomata.generateMap(wallPercentage, iterations, wallSearchRange1, wallCutOff1, wallSearchRange2, wallCutOff2));
+        long timeAfter = System.currentTimeMillis();
+        long actualTimeSpent = timeAfter - timeBefore;
+        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        return new Raport(actualTimeSpent, actualMemUsed);
     }
     
     /**
@@ -151,10 +173,14 @@ public class Cave {
      * CaveGenerator-luokkaa
      * @return  Cave    Cave-Olio joka käyttää CaveGenerator -luokan generoimaa karttaa
      */
-    public static Cave generateUsingCaveGenerator() {
+    public static Raport generateUsingCaveGenerator(int roomsToGenerate, String spanningTreeType, int treeCutOff) {
         Cave cave = new Cave();
-        new CaveGenerator().generateMap(12);
-        return cave;
+        return new CaveGenerator().generateMap(roomsToGenerate, spanningTreeType, treeCutOff);
+    }
+    
+    public static Raport generateUsingTinyKeepish(int roomsToGenerate, int rounds, int largeCutoff, String spanningTreeType, int treeCutOff) {
+        Cave cave = new Cave();
+        return new TinyKeepish().generateMap(roomsToGenerate, rounds, largeCutoff, spanningTreeType, treeCutOff);
     }
     
     /**
