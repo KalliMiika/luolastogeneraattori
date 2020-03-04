@@ -1,9 +1,7 @@
 package luolastogeneraattori;
 
+import luolastogeneraattori.cavegenerators.TinyKeepish;
 import luolastogeneraattori.objects.Cave;
-import luolastogeneraattori.objects.Corridor;
-import luolastogeneraattori.objects.Point;
-import luolastogeneraattori.objects.Room;
 
 public class Main {
 
@@ -21,8 +19,10 @@ public class Main {
 //        drawMap(cave.getMap());
 //        System.out.println("================================================================");
 //        System.out.println("================================================================");
-        cave = Cave.generateUsingCaveGenerator();
-        drawMap(cave.getMap());
+        //cave = Cave.generateUsingCaveGenerator();
+        //drawMap(cave.getMap());
+        new TinyKeepish().generateMap(100, 3, 30);
+        //drawMap(cave.getMap());
     }
 
     private static void drawMap(char[][] map) {

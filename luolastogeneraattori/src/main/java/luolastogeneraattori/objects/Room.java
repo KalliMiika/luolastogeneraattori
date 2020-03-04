@@ -5,7 +5,7 @@ import java.util.Random;
 public class Room {
 
     private Point center;
-    private int radius;
+    private double radius;
 
     private int width;
     private int height;
@@ -43,7 +43,7 @@ public class Room {
      * @param radius int Huoneen säde
      * @param id int huoneen id
      */
-    public Room(Point center, int width, int height, int radius, int id) {
+    public Room(Point center, int width, int height, double radius, int id) {
         this.center = center;
         this.width = width;
         this.height = height;
@@ -56,7 +56,7 @@ public class Room {
      * koordinaattien osoittamaan kohtaan
      */
     public void drawCenter() {
-        Cave.getInstance().map[center.getY()][center.getX()] = (char)(97+this.id);
+        Cave.getInstance().map[center.getY()][center.getX()] = (char) (97 + this.id);
     }
 
     /**
@@ -67,7 +67,7 @@ public class Room {
      * osoittamaan suuntaan
      */
     public void drawCircle() {
-        int pointCount = pointsForRadius[radius];
+        int pointCount = pointsForRadius[(int)radius];
         double degreeBetweenPoints = 360 / pointCount;
         for (int i = 0; i < pointCount; i++) {
             double x = radius * Math.cos(Math.toRadians(degreeBetweenPoints * i));
@@ -95,13 +95,25 @@ public class Room {
                 }
                 if ((column >= xStart && column < xEnd) && (row == yStart - 1 || row == yEnd)) {
                     Cave.getInstance().map[row][column] = '-';
-                } else if ((column == xStart -1 || column == xEnd) && (row == yStart - 1 || row == yEnd)){
+                } else if ((column == xStart - 1 || column == xEnd) && (row == yStart - 1 || row == yEnd)) {
                     Cave.getInstance().map[row][column] = '!';
-                }else if (column == xStart - 1 || column == xEnd) {
+                } else if (column == xStart - 1 || column == xEnd) {
                     Cave.getInstance().map[row][column] = '|';
                 } else {
                     Cave.getInstance().map[row][column] = '.';
                 }
+            }
+        }
+    }
+    
+    public void drawRoomNoWalls() {
+        int yStart = this.center.getY() - this.height / 2;
+        int yEnd = this.center.getY() + (this.height + 1) / 2;
+        int xStart = this.center.getX() - this.width / 2;
+        int xEnd = this.center.getX() + (this.width + 1) / 2;
+        for (int row = yStart; row < yEnd; row++) {
+            for (int column = xStart; column < xEnd; column++) {
+                Cave.getInstance().map[row][column] = '.';
             }
         }
     }
@@ -120,7 +132,7 @@ public class Room {
         int x = Math.abs(this.center.getX() - room.getCenter().getX());
         int y = Math.abs(this.center.getY() - room.getCenter().getY());
         double c = Math.sqrt((x * x) + (y * y));
-        if (c < this.radius + room.radius) {
+        if (c <= this.radius + room.radius) {
             Point vel = solveCollision(room);
             room.center.checkAndAdd(vel);
             this.center.checkAndAdd(vel.cloneOpposite());
@@ -176,11 +188,20 @@ public class Room {
     }
 
     /**
-     * Palauttaa tämän Room-Olion "kuplan" säteen
+     * Palauttaa tämän Room-Olion "kuplan" säteen int muodossa
      *
      * @return int tämän Room-Olion "kuplan" säde
      */
     public int getRadius() {
+        return (int)this.radius;
+    }
+    
+    /**
+     * Palauttaa tämän Room-Olion "kuplan" säteen
+     *
+     * @return int tämän Room-Olion "kuplan" säde
+     */
+    public double getRadiusRaw() {
         return this.radius;
     }
 
@@ -200,6 +221,14 @@ public class Room {
     public void setId(int id) {
         this.id = id;
     }
+    
+    public int getWidth() {
+        return this.width;
+    }
+    
+    public int getHeight() {
+        return this.height;
+    }
 
     /**
      * Generoi Satunnaisen kokoisen huoneen satunnaiseen paikkaan kartalla
@@ -212,7 +241,16 @@ public class Room {
         int width = new Random().nextInt(4) + 3;
         int height = new Random().nextInt(4) + 3;
         double radius = (Math.sqrt((width) + (height))) + 2;
-        return new Room(center, width, height, (int) radius, i);
+        return new Room(center, width, height, radius, i);
+    }
+    
+    public static Room generateRandomRoom(Point center, int i) {
+        int width = new Random().nextInt(4) + 3;
+        int height = new Random().nextInt(4) + 3;
+        double a = width / 2.0;
+        double b = height / 2.0;
+        double radius = (Math.sqrt((a * a) + (b * b)));
+        return new Room(center, width, height, radius, i);
     }
 
     /**

@@ -97,6 +97,24 @@ public class Point {
         this.x += point.getXVal();
         this.y += point.getYVal();
     }
+    
+    /**
+     * Lisää parametrina annetun Point-olion koordinaatit tämän Point-olion
+     * koordinaatteihin.
+     * 
+     * Rajoituksena, jos lisäys veisi Point-Olion koordinaatin pois
+     * maalitilasta, ei lisäystä tehdä
+     *
+     * @param point Lisättävä Point-olio
+     */
+    public void addSmart(Point pointTOAdd, Point goalState) {
+        if (this.getX() != goalState.getX()) {
+            this.x += pointTOAdd.getXVal();
+        }
+        if (this.getY() != goalState.getY()) {
+            this.y += pointTOAdd.getYVal();
+        }
+    }
 
     /**
      * Vähentää parametrina annetun Point-olion koordinaatit tämän Point-olion

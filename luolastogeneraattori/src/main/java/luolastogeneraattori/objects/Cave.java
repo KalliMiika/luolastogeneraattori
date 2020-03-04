@@ -12,8 +12,8 @@ public class Cave {
      * Luolastongeneroinnissa käytettävien karttojen
      * Leveys ja Korkeus
      */
-    public static final int WIDTH = 88;
-    public static final int HEIGHT = 44;
+    public static final int WIDTH = 80;
+    public static final int HEIGHT = 80;
 
     char[][] map;
 

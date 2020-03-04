@@ -1,9 +1,7 @@
 package luolastogeneraattori.cavegenerators;
 
-import luolastogeneraattori.objects.Cave;
 import luolastogeneraattori.objects.Corridor;
 import luolastogeneraattori.objects.Room;
-import luolastogeneraattori.ui.Graph;
 import luolastogeneraattori.utils.Delaunay;
 import luolastogeneraattori.utils.CorridorList;
 import luolastogeneraattori.utils.SpanningTrees;
@@ -32,10 +30,10 @@ public class CaveGenerator {
         }                    
         corridors = new Delaunay().triangulate(rooms).clearDuplicates();
         //corridors = new SpanningTrees().basic(rooms, corridors);
-        corridors = new SpanningTrees().random(rooms, corridors);
+        corridors = new SpanningTrees().random(rooms, corridors, roomsToGenerate);
         
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
-        //Graph graph = new Graph();
+       // Graph graph = new Graph();
        // graph.main(rooms, corridors);
     }
     
