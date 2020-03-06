@@ -1,5 +1,6 @@
 # Luolastogeneraattori
 
+- [Käyttöohje](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/k%C3%A4ytt%C3%B6ohje.md)
 - [Määrittelydokumentti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
 - [Toteutusdokumentti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/toteutusdokumentti.md)
 - [Testausdokumentti valmiille ohjelmalle](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/testausdokumenttiValmis.md)
