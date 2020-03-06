@@ -127,6 +127,12 @@ Käytävien Kaiverrus
   
 Aikavaativuus muistaakseni merkittiin kokonaisuuden suurimman aikasyöpön mukaan, eli se olisi törmäystarkistuksen O(n^2*log(n))
 ```
+#### Puutteita Ja Parannusehdotuksia
+```
+Delaunay Triangulation Algoritmiin jäi jokin bugi, jonka takia se välillä generoi käytäviä, jotka leikkaavat toisia käytäviä, vaikka se
+ei ole haluttu ominaisuus.
+Jossain kohtaa välillä Delaunay Triangulation ja Spanning Tree tapahtuu bugi, jonka lopputuloksena generoituu huone johon ei johda ainuttakaan käytävää, en onnistunut paikantamaan bugia.
+```
 
 ### TinyKeepIsh
 Tarkoitus oli koittaa tehdä oma versio [tästä](https://www.gamasutra.com/blogs/AAdonaac/20150903/252889/Procedural_Dungeon_Generation_Algorithm.php) kuitenkin niin, että mitään lähdekoodia tms en lukenut vaan luin pääpiirteittäin idean ja koitin keksiä toteutukset itse. Delaunay Triangulationin kanssa tosin jouduin turvautumaan jonkun toisen laskutoimitukseen kolmiota ympäröivän ympyrän laskemiseen kun en itse osannut ja aika meinasi loppua kesken
@@ -175,7 +181,14 @@ Huoneiden piirtäminen
   
 Suurin aikasyöppö sama kuin TBD:ssä, eli se olisi törmäystarkistuksen O(n^2*log(n))
 ```
+#### Puutteita Ja Parannusehdotuksia
+```
+Delaunay Triangulation Algoritmiin jäi jokin bugi, jonka takia se välillä generoi käytäviä, jotka leikkaavat toisia käytäviä, vaikka se
+ei ole haluttu ominaisuus.
+Jossain kohtaa välillä Delaunay Triangulation ja Spanning Tree tapahtuu bugi, jonka lopputuloksena generoituu huone johon ei johda ainuttakaan käytävää, en onnistunut paikantamaan bugia.
 
+Lopputulos on aika nyrkillä näyttöön lyödyn näköinen, sitä voisi parantaa esim ympäröimällä huoneita seinillä ja laittaa jotain järkeä käytävien generointiin ettei kahta käytävää laiteta menemään käytännössä vierekkäin samaan suuntaan, jonka lopputuloksena on todella pasku ja epämääräinen mössö.
+```
 ### Lähteet
 - https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/
 - http://roguebasin.com/index.php?title=Cellular_Automata_Method_for_Generating_Random_Cave-Like_Levels
