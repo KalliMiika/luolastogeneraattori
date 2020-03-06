@@ -7,6 +7,7 @@
 java -jar luolastogeneraattori.jar
 ```
 
+<img src="https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/images/ui.png"/>
 Oikeasta yläkulmasta valitaan käytettävä algoritmi, jonka jälkeen oikeaan
 laitaan avautuu parametripalkki josta voi säätää ohjelman käyttämiä parametrejä
 ja oikeasta alakulmasta löytyy algoritmin käyttämä aika ja muisti suorituksen jälkeen
