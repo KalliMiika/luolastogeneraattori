@@ -1,6 +1,7 @@
 # Luolastogeneraattori
 
 - [Määrittelydokumentti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/m%C3%A4%C3%A4rittelydokumentti.md)
+- [Toteutusdokumentti valmiille ohjelmalle](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/testausdokumenttiValmis.md)
 - [Toteutusdokumentti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/toteutusdokumentti.md)
 - [Testausdokumentti](https://github.com/KalliMiika/luolastogeneraattori/blob/master/dokumentaatio/testausdokumentti.md)
 - Viikkoraportit
