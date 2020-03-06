@@ -45,8 +45,8 @@ Tree CUtoff : 0
 |100|10 ms|
 |250|1300 ms|
 
-en nyt keksinyt että miten tästä graafin piirtäisi mutta äkkisillään vaikuttaisi jyrkemmältä kuin mitä
-n^2*log(n) pitäisi olla
+en nyt keksinyt että miten tästä graafin piirtäisi mutta äkkisillään arvioituna näyttäisi olevan lähempänä
+O(n^5 * log(n))
 
 #### Virittävät Puut
 ```
