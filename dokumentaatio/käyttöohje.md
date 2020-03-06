@@ -1,6 +1,8 @@
 ## Käyttöohje
 
-Ohjelman saa käyntiin komennolla kansion juuresta
+[Lataa ohjelma](https://github.com/KalliMiika/luolastogeneraattori/releases/tag/Release)
+
+#### Ohjelman saa käyntiin komennolla kansion juuresta
 ```
 java -jar luolastogeneraattori.jar
 ```
