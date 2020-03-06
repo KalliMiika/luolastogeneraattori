@@ -107,31 +107,36 @@ Huoneiden generointi O(n) aika
 Huoneiden törmäilyä en osaa arvioida, testailun perusteella luokkaa 
   SQUARE:lla O(n^2 * log(n))
   SPHERE:llä O(n^2 * log(n))
-Delaunay Triangulation Jokainen huone käydään läpi kerran, jokaista huonetta kohtaan tarkistetaan kolmioita, joita on sitä enemmän,
-  mitä enemmän huoneita on, arvio O(n * log(n))
+Delaunay Triangulation Jokainen huone käydään läpi kerran, jokaista huonetta kohtaan tarkistetaan 
+  kolmioita, joita on sitä enemmän, mitä enemmän huoneita on, arvio O(n * log(n))
 Virittäväpuu
-  Delaunay "pahin mahdollinen" case on, että 3 huonetta = 3 käytävää, jonka jälkeen aina, kun lisätään uusi huone, käytävien määrä
-  kasvaa 3:lla. 
-  RANDOM käy kaikki käytävät läpi satunnaisessa järjestyksessä, käytävien lukumäärä on pahimmillaan 3*n, uuden huoneen löytyessä
-  käydään jokainen käytävä läpi ja tutkitaan, että onko se kiinni tarkasteltavassa huoneessa, aikavaativuus on siis O(3 * n^2)
+  Delaunay "pahin mahdollinen" case on, että 3 huonetta = 3 käytävää, jonka jälkeen aina, kun 
+  lisätään uusi huone, käytävien määrä kasvaa 3:lla. 
+  RANDOM käy kaikki käytävät läpi satunnaisessa järjestyksessä, käytävien lukumäärä on 
+  pahimmillaan 3*n, uuden huoneen löytyessä käydään jokainen käytävä läpi ja tutkitaan, 
+  että onko se kiinni tarkasteltavassa huoneessa, aikavaativuus on siis O(3 * n^2)
   
-  BASIC Ottaa ensimmäisen huoneen listasta, etsii käytävät jotka ovat liitoksissa siihen, ja tutkii sitten käytävien toisessa 
-  päässä olevia huoneita. Jokaisessa huoneessa vieraillaan kerran, ja kaikki käytävät tutkitaan joka huoneen kohalla
-  aikavaativuus O(3 * n^2)
+  BASIC Ottaa ensimmäisen huoneen listasta, etsii käytävät jotka ovat liitoksissa siihen, 
+  ja tutkii sitten käytävien toisessa päässä olevia huoneita. Jokaisessa huoneessa vieraillaan
+  kerran, ja kaikki käytävät tutkitaan joka huoneen kohalla aikavaativuus O(3 * n^2)
 Käytävien Kaiverrus
   Käytäviä on väliltä n~3n, parametrin treeCutOff(0~100) mukaan.
   x = kartan leveys
   y = kartan korkeus
   käytävät kaiverretaan A* haulla päästä päähän, kulmittain liikkuminen ei ole sallittua
-  Askelia tehdään luokkaa x+y, joka askeleella tutkitaan 4 ympäröivää ruutua, aikavaativuus noin O(12 * n(x + y))
+  Askelia tehdään luokkaa x+y, joka askeleella tutkitaan 4 ympäröivää ruutua, 
+  aikavaativuus noin O(12 * n(x + y))
   
-Aikavaativuus muistaakseni merkittiin kokonaisuuden suurimman aikasyöpön mukaan, eli se olisi törmäystarkistuksen O(n^2*log(n))
+Aikavaativuus muistaakseni merkittiin kokonaisuuden suurimman aikasyöpön mukaan, 
+eli se olisi törmäystarkistuksen O(n^2*log(n))
 ```
 #### Puutteita Ja Parannusehdotuksia
 ```
-Delaunay Triangulation Algoritmiin jäi jokin bugi, jonka takia se välillä generoi käytäviä, jotka leikkaavat toisia käytäviä, vaikka se
-ei ole haluttu ominaisuus.
-Jossain kohtaa välillä Delaunay Triangulation ja Spanning Tree tapahtuu bugi, jonka lopputuloksena generoituu huone johon ei johda ainuttakaan käytävää, en onnistunut paikantamaan bugia.
+Delaunay Triangulation Algoritmiin jäi jokin bugi, jonka takia se välillä generoi käytäviä, 
+jotka leikkaavat toisia käytäviä, vaikka se ei ole haluttu ominaisuus.
+Jossain kohtaa välillä Delaunay Triangulation ja Spanning Tree tapahtuu bugi, 
+jonka lopputuloksena generoituu huone johon ei johda ainuttakaan käytävää, 
+en onnistunut paikantamaan bugia.
 ```
 
 ### TinyKeepIsh
@@ -163,31 +168,38 @@ Huoneiden generointi O(n) aika
 Huoneiden törmäilyä en osaa arvioida, testailun perusteella luokkaa 
   SQUARE:lla O(n^2 * log(n))
   SPHERE:llä O(n^2 * log(n))
-Delaunay Triangulation Jokainen huone käydään läpi kerran, jokaista huonetta kohtaan tarkistetaan kolmioita, joita on sitä enemmän,
-  mitä enemmän huoneita on, arvio O(n * log(n))
+Delaunay Triangulation Jokainen huone käydään läpi kerran, jokaista huonetta kohtaan tarkistetaan 
+  kolmioita, joita on sitä enemmän, mitä enemmän huoneita on, arvio O(n * log(n))
 Virittäväpuu
-  Delaunay "pahin mahdollinen" case on, että 3 huonetta = 3 käytävää, jonka jälkeen aina, kun lisätään uusi huone, käytävien määrä
-  kasvaa 3:lla. 
-  RANDOM käy kaikki käytävät läpi satunnaisessa järjestyksessä, käytävien lukumäärä on pahimmillaan 3*n, uuden huoneen löytyessä
-  käydään jokainen käytävä läpi ja tutkitaan, että onko se kiinni tarkasteltavassa huoneessa, aikavaativuus on siis O(3 * n^2)
+  Delaunay "pahin mahdollinen" case on, että 3 huonetta = 3 käytävää, jonka jälkeen aina, 
+  kun lisätään uusi huone, käytävien määrä kasvaa 3:lla. 
+  RANDOM käy kaikki käytävät läpi satunnaisessa järjestyksessä, käytävien lukumäärä on 
+  pahimmillaan 3*n, uuden huoneen löytyessä käydään jokainen käytävä läpi ja tutkitaan, 
+  että onko se kiinni tarkasteltavassa huoneessa, aikavaativuus on siis O(3 * n^2)
   
-  BASIC Ottaa ensimmäisen huoneen listasta, etsii käytävät jotka ovat liitoksissa siihen, ja tutkii sitten käytävien toisessa 
-  päässä olevia huoneita. Jokaisessa huoneessa vieraillaan kerran, ja kaikki käytävät tutkitaan joka huoneen kohalla
-  aikavaativuus O(3 * n^2)
+  BASIC Ottaa ensimmäisen huoneen listasta, etsii käytävät jotka ovat liitoksissa siihen, 
+  ja tutkii sitten käytävien toisessa päässä olevia huoneita. Jokaisessa huoneessa vieraillaan kerran, 
+  ja kaikki käytävät tutkitaan joka huoneen kohalla aikavaativuus O(3 * n^2)
 1x1 kokoisten huoneiden generointi O(x*y), jossa x = kartan leveys y = kartan korkeus
 Ruutujen numerointi O(x*y), jokaisessa ruudussa vieraillaan kerran
 Huoneiden piirtäminen
-  Edetään kohtisuoraa käytäviä pitkin, tarkasteltavia ruutuja maksimissaan luokkaa käytävien lukumäärä * (x+y) eli O(3*n(x+y))
+  Edetään kohtisuoraa käytäviä pitkin, tarkasteltavia ruutuja maksimissaan luokkaa 
+  käytävien lukumäärä * (x+y) eli O(3*n(x+y))
   
 Suurin aikasyöppö sama kuin TBD:ssä, eli se olisi törmäystarkistuksen O(n^2*log(n))
 ```
 #### Puutteita Ja Parannusehdotuksia
 ```
-Delaunay Triangulation Algoritmiin jäi jokin bugi, jonka takia se välillä generoi käytäviä, jotka leikkaavat toisia käytäviä, vaikka se
-ei ole haluttu ominaisuus.
-Jossain kohtaa välillä Delaunay Triangulation ja Spanning Tree tapahtuu bugi, jonka lopputuloksena generoituu huone johon ei johda ainuttakaan käytävää, en onnistunut paikantamaan bugia.
+Delaunay Triangulation Algoritmiin jäi jokin bugi, jonka takia se välillä generoi käytäviä, 
+jotka leikkaavat toisia käytäviä, vaikka se ei ole haluttu ominaisuus.
+Jossain kohtaa välillä Delaunay Triangulation ja Spanning Tree tapahtuu bugi, 
+jonka lopputuloksena generoituu huone johon ei johda ainuttakaan käytävää, 
+en onnistunut paikantamaan bugia.
 
-Lopputulos on aika nyrkillä näyttöön lyödyn näköinen, sitä voisi parantaa esim ympäröimällä huoneita seinillä ja laittaa jotain järkeä käytävien generointiin ettei kahta käytävää laiteta menemään käytännössä vierekkäin samaan suuntaan, jonka lopputuloksena on todella pasku ja epämääräinen mössö.
+Lopputulos on aika nyrkillä näyttöön lyödyn näköinen, sitä voisi parantaa esim ympäröimällä 
+huoneita seinillä ja laittaa jotain järkeä käytävien generointiin ettei kahta käytävää 
+laiteta menemään käytännössä vierekkäin samaan suuntaan, 
+jonka lopputuloksena on todella pasku ja epämääräinen mössö.
 ```
 ### Lähteet
 - https://www.freecodecamp.org/news/how-to-make-your-own-procedural-dungeon-map-generator-using-the-random-walk-algorithm-e0085c8aa9a/
