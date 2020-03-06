@@ -1,5 +1,6 @@
 package luolastogeneraattori.objects;
 
+import luolastogeneraattori.utils.Raport;
 import java.util.ArrayList;
 import java.util.Random;
 import luolastogeneraattori.cavegenerators.CaveGenerator;
@@ -13,8 +14,8 @@ public class Cave {
      * Luolastongeneroinnissa käytettävien karttojen
      * Leveys ja Korkeus
      */
-    public static final int WIDTH = 80;
-    public static final int HEIGHT = 80;
+    public static final int WIDTH = 160;
+    public static final int HEIGHT = 132;
 
     char[][] map;
 
@@ -113,48 +114,48 @@ public class Cave {
      * @param tunnelCount       int     Kaivettavien tunneleiden lukumäärä
      * @param maxTunnelLength   int     Kaivettavien tunneleiden maksimipituus
      * @param minTunnelLength   int     Kaivettavien tunneleiden minimipituus
-     * @return                  Cave    Cave-Olio joka käyttää generoitua karttaa
+     * @return  Raport    Raportti, josta selviää kuinka tehokkaasti algoritmi suoriutui
      */
     public static Raport generateUsingRandomWalk(int tunnelCount, int maxTunnelLength, int minTunnelLength) {
-        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long timeBefore = System.currentTimeMillis();
         new Cave(RandomWalk.generateMap(tunnelCount, maxTunnelLength, minTunnelLength));
         long timeAfter = System.currentTimeMillis();
         long actualTimeSpent = timeAfter - timeBefore;
-        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long actualMemUsed = afterUsedMem - beforeUsedMem;
         return new Raport(actualTimeSpent, actualMemUsed);
     }
     
     /**
      * Luo uuden Cave-olion ja generoi sille käytettävän kartan käyttäen
      * RandomWalk-algoritmia default parametreilla
-     * @return                  Cave    Cave-Olio joka käyttää generoitua karttaa
+     * @return  Raport    Raportti, josta selviää kuinka tehokkaasti algoritmi suoriutui
      */
     public static Raport generateUsingRandomWalk() {
-        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long timeBefore = System.currentTimeMillis();
         new Cave(RandomWalk.generateMap(50, 8, 0));
         long timeAfter = System.currentTimeMillis();
         long actualTimeSpent = timeAfter - timeBefore;
-        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long actualMemUsed = afterUsedMem - beforeUsedMem;
         return new Raport(actualTimeSpent, actualMemUsed);
     }
     
     /**
      * Luo uuden Cave-olion ja generoi sille käytettävän kartan käyttäen
      * Cellular Automata-algoritmia default parametreilla
-     * @return                  Cave    Cave-Olio joka käyttää generoitua karttaa
+     * @return  Raport    Raportti, josta selviää kuinka tehokkaasti algoritmi suoriutui
      */
     public static Raport generateUsingCellularAutomata(int wallPercentage, int iterations, int wallSearchRange1, int wallCutOff1, int wallSearchRange2, int wallCutOff2) {
-        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long timeBefore = System.currentTimeMillis();
         new Cave(CellularAutomata.generateMap(wallPercentage, iterations, wallSearchRange1, wallCutOff1, wallSearchRange2, wallCutOff2));
         long timeAfter = System.currentTimeMillis();
         long actualTimeSpent = timeAfter - timeBefore;
-        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long actualMemUsed = afterUsedMem - beforeUsedMem;
         return new Raport(actualTimeSpent, actualMemUsed);
     }
     
@@ -171,16 +172,26 @@ public class Cave {
     /**
      * Luo uuden Cave-olion ja generoi sille käytettävän kartan käyttäen
      * CaveGenerator-luokkaa
-     * @return  Cave    Cave-Olio joka käyttää CaveGenerator -luokan generoimaa karttaa
+     * @return  Raport    Raportti, josta selviää kuinka tehokkaasti algoritmi suoriutui
      */
-    public static Raport generateUsingCaveGenerator(int roomsToGenerate, String spanningTreeType, int treeCutOff) {
+    public static Raport generateUsingCaveGenerator(int roomsToGenerate, String collisionMethod, String spanningTreeType, int treeCutOff) {
         Cave cave = new Cave();
-        return new CaveGenerator().generateMap(roomsToGenerate, spanningTreeType, treeCutOff);
+        return new CaveGenerator().generateMap(roomsToGenerate, collisionMethod, spanningTreeType, treeCutOff);
     }
     
-    public static Raport generateUsingTinyKeepish(int roomsToGenerate, int rounds, int largeCutoff, String spanningTreeType, int treeCutOff) {
+    /**
+     * Luo uuden Cave-Olion ja generoi sille käytettävän kartan käyttäen
+     * TinyKeepish Algoritmia
+     * @param roomsToGenerate   Generoitavien huoneiden määrä
+     * @param rounds    Spiraalien lukumäärä
+     * @param largeCutoff   Kynnys, jota suuremmat huoneet määritellään suuriksi
+     * @param spanningTreeType  Käytettävä Virittävä Puu algoritmi
+     * @param treeCutOff    Todennäköisyys, jolla puuhun kuulumaton käytävä otetaan mukaan
+     * @return  Raport    Raportti, josta selviää kuinka tehokkaasti algoritmi suoriutui
+     */
+    public static Raport generateUsingTinyKeepish(int roomsToGenerate, String generationMethod, String collisionMethod, int largeCutoff, String spanningTreeType, int treeCutOff) {
         Cave cave = new Cave();
-        return new TinyKeepish().generateMap(roomsToGenerate, rounds, largeCutoff, spanningTreeType, treeCutOff);
+        return new TinyKeepish().generateMap(roomsToGenerate, generationMethod, collisionMethod, largeCutoff, spanningTreeType, treeCutOff);
     }
     
     /**

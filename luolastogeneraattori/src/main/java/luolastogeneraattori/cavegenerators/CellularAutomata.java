@@ -12,6 +12,11 @@ public class CellularAutomata {
      * kierroksen syöte. Eri kierroksilla käytetään eri parametreja erilaisten tavotteiden
      * saavuttamiseksi
      * @param wallPercentage Todennäköisyys että ruutu on seinäpala luola-pohjan generoinnissa
+     * @param iterations    Iteraatioiden lukumäärä
+     * @param wallSearchRange1  Seinien hakuetäisyys 1
+     * @param wallCutOff1       Jos seiniä on > kuin tämä niin seinä
+     * @param wallSearchRange2  Seinien hakuetäisyys 2
+     * @param wallCutOff2       Jos seiniä on < kuin tämä niin seinä
      * @return Palauttaa CellularAutomatalla generoidun char[][] luolaston
      */
     public static char[][] generateMap(int wallPercentage, int iterations, int wallSearchRange1, int wallCutOff1, int wallSearchRange2, int wallCutOff2) {
@@ -23,21 +28,6 @@ public class CellularAutomata {
                 map = makeCaverns(map, wallSearchRange1, wallCutOff1, 0, 0);
             }
         }
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 4);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 4);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 3, 4);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
-        map = makeCaverns(map, 1, 5, 0, 0);
         return map;
     }
     

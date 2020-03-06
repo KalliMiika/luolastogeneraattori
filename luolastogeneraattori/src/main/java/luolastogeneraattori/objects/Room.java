@@ -67,7 +67,7 @@ public class Room {
      * osoittamaan suuntaan
      */
     public void drawCircle() {
-        int pointCount = pointsForRadius[(int)radius];
+        int pointCount = pointsForRadius[(int) radius];
         double degreeBetweenPoints = 360 / pointCount;
         for (int i = 0; i < pointCount; i++) {
             double x = radius * Math.cos(Math.toRadians(degreeBetweenPoints * i));
@@ -103,6 +103,9 @@ public class Room {
         }
     }
     
+    /**
+     * Metodi piirtää huoneen lattian, mutta jättää seinät piirtämättä
+     */
     public void drawRoomNoWalls() {
         int yStart = this.center.getY() - this.height / 2;
         int yEnd = this.center.getY() + (this.height + 1) / 2;
@@ -136,6 +139,54 @@ public class Room {
             return 1;
         }
         return 0;
+    }
+    
+    /**
+     * Tarkistaa törmääkö tämä huone parametrina annetun huoneen kanssa.
+     * Törmäys selvitetään laskemalla ensin tämän huoneen vasen, oikea, ylä ja ala seinien koordinaatit
+     * Ja sitten laskemalla että onko mikään tarkasteltavan huoneen kulmista näiden koordinaattien sisäpuolella,
+     * Jos on niin törmäys tapahtuu
+     * @param room  Tarkasteltava huone
+     * @return  1 jos törmättiin, 0 muutoin
+     */
+    public int checkCollisionSquare(Room room) {
+        int negPadding = 2;
+        int posPadding = 0;
+        int top = this.center.getY() - this.height / 2;
+        int bottom = this.center.getY() + (this.height - 1) / 2;
+        int left = this.center.getX() - this.width / 2;
+        int right = this.center.getX() + (this.width - 1) / 2;
+        
+        int ret = 0;
+        for (Point p : room.getFourCorners()) {
+            if (p.getX() >= left
+                    && p.getX() <= right
+                    && p.getY() >= top
+                    && p.getY() <= bottom) {
+                Point vel = solveCollision(room);
+                room.center.checkAndAdd(vel);
+                this.center.checkAndAdd(vel.cloneOpposite());
+                ret++;
+            }
+        }
+        return ret;
+    }
+    
+    /**
+     * Palauttaa tämän huoneen kulmien lokaatiot taulukkona
+     * @return Point[] Huoneen kulmien lokaatiot
+     */
+    public Point[] getFourCorners() {
+        int top = this.center.getY() - this.height / 2;
+        int bottom = this.center.getY() + (this.height - 1) / 2;
+        int left = this.center.getX() - this.width / 2;
+        int right = this.center.getX() + (this.width - 1) / 2;
+        return new Point[]{
+            new Point(left, top),
+            new Point(left, bottom),
+            new Point(right, top),
+            new Point(right, bottom)
+        };
     }
 
     /**
@@ -190,7 +241,7 @@ public class Room {
      * @return int tämän Room-Olion "kuplan" säde
      */
     public int getRadius() {
-        return (int)this.radius;
+        return (int) this.radius;
     }
     
     /**
@@ -241,6 +292,12 @@ public class Room {
         return new Room(center, width, height, radius, i);
     }
     
+    /**
+     * Generoi random huoneen, jonka keskipiste on annettuna
+     * @param center    Generoitavan huoneen keskipiste
+     * @param i         Generoitavan huoneen id
+     * @return Room Luotu huone
+     */
     public static Room generateRandomRoom(Point center, int i) {
         int width = new Random().nextInt(4) + 3;
         int height = new Random().nextInt(4) + 3;

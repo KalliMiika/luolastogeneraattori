@@ -64,8 +64,8 @@ public class TriangleList {
      * @return boolean
      */
     public boolean contains(Triangle t) {
-        for (Triangle i : list) {
-            if (i.equals(t)) {
+        for (int i = 0; i < pointer; i++) {
+            if (list[i].equals(t)) {
                 return true;
             }
         }

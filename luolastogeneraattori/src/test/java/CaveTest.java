@@ -40,7 +40,7 @@ public class CaveTest {
         for (int column, row = 0; row < HEIGHT; row++) {
             for (column = 0; column < WIDTH; column++) {
                 if (row == 0 || column == 0 || row == HEIGHT - 1 || column == WIDTH - 1) {
-                    if(map[row][column] != '#'){
+                    if(map[row][column] != ' '){
                         bordersAreWalls = false;
                     }
                 } 

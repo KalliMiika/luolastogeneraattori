@@ -1,5 +1,5 @@
 
-package luolastogeneraattori.objects;
+package luolastogeneraattori.utils;
 
 public class Raport {
     
@@ -13,6 +13,6 @@ public class Raport {
     
     public String toString() {
         return "time: " + time + "ms\n"
-                +"memory: " + memory;
+                + "memory: " + memory;
     }
 }

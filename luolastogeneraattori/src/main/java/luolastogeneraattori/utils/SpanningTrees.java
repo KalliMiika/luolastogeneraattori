@@ -51,6 +51,10 @@ public class SpanningTrees {
         return newCorridors;
     }
 
+    
+    private CorridorList cors;
+    boolean[] help;
+    
     /**
      * 1. Otetaan random Room Objekti Room[] taulusta
      * 2. Etsitään kaikki ne käytävät, jotka johtavat huoneeseen jossa ei olla vielä käyty
@@ -59,55 +63,67 @@ public class SpanningTrees {
      * 5. lisätään osa niistä käytävistä joita ei valittu
      * @param rooms     Room[]
      * @param corridors CorridorList
+     * @param maxRoomId suurin mahdollinen id
+     * @param treeCutOff  todennäköisyys jolla puuhun kuulumaton käytävä otetaan mukaan
+     * 
      * @return CorridorList     Randomilla generoitu virittävä puu + muutama extran muodostavat corridor -objektit
      */
     public CorridorList random(Room[] rooms, CorridorList corridors, int maxRoomId, int treeCutOff) {
         CorridorList newCorridors = new CorridorList();
-        boolean[] help = new boolean[maxRoomId];
+        help = new boolean[maxRoomId];
         Random rnd = new Random();
-
-        Room r = rooms[rnd.nextInt(rooms.length)];
-        Room from;
-        Room to;
-        help[r.getId()] = true;
-
-        int counter = 1;
-        CorridorList tmp = new CorridorList();
-        while (counter < rooms.length) {
-            for (Corridor c : corridors.toArray()) {
-                from = c.getFrom();
-                to = c.getTo();
-                if (from.getId() == r.getId() && !help[to.getId()]) {
-                    if (!tmp.contains(c)) {
-                        tmp.add(c);
-                    }
-                } else if (to.getId() == r.getId() && !help[from.getId()]) {
-                    if (!tmp.contains(c)) {
-                        tmp.add(c);
-                    }
-                }
+        
+        cors = new CorridorList();
+        cors.add(corridors.get(rnd.nextInt(corridors.size())));
+        
+        while (cors.size() > 0) {
+            Corridor c = cors.get(0);
+            cors.remove(c);
+            boolean ham = false;
+            if (!help[c.getFrom().getId()]) {
+                findConnectedCorridors(corridors, c.getFrom());
+                help[c.getFrom().getId()] = true;
+                ham = true;
             }
-            Corridor cor = tmp.get(rnd.nextInt(tmp.size()));
-            tmp.remove(cor);
-            from = cor.getFrom();
-            to = cor.getTo();
-            if (help[from.getId()] && !help[to.getId()]) {
-                r = to;
-                help[r.getId()] = true;
-                newCorridors.add(cor);
-                counter++;
-            } else if (help[to.getId()] && !help[from.getId()]) {
-                r = from;
-                help[r.getId()] = true;
-                newCorridors.add(cor);
-                counter++;
+            if (!help[c.getTo().getId()]) {
+                findConnectedCorridors(corridors, c.getTo());
+                help[c.getTo().getId()] = true;
+                ham = true;
+            }
+            if (ham) {
+                newCorridors.add(c);
             }
         }
+        
         for (Corridor c : corridors.toArray()) {
             if (!newCorridors.contains(c) && rnd.nextInt(100) < treeCutOff) {
                 newCorridors.add(c);
             }
         }
         return newCorridors;
+    }
+    
+    /**
+     * Metodi etsii parametrina annetuista COrridor-Olioista ne, 
+     * joiden toinen pää on kiinni parametrina annetussa Room-Oliossa r
+     * @param corridors Tarkasteltavat Corridor -Oliot
+     * @param r Tarkasteltava Room -Olio
+     */
+    private void findConnectedCorridors(CorridorList corridors, Room r) {
+        Room from;
+        Room to;
+        for (Corridor c : corridors.toArray()) {
+            from = c.getFrom();
+            to = c.getTo();
+            if (from.getId() == r.getId() && !help[to.getId()]) {
+                if (!cors.contains(c)) {
+                    cors.add(c);
+                }
+            } else if (to.getId() == r.getId() && !help[from.getId()]) {
+                if (!cors.contains(c)) {
+                    cors.add(c);
+                }
+            }
+        }
     }
 }

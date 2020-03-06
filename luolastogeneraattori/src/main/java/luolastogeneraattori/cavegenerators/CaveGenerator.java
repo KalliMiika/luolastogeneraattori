@@ -1,7 +1,7 @@
 package luolastogeneraattori.cavegenerators;
 
 import luolastogeneraattori.objects.Corridor;
-import luolastogeneraattori.objects.Raport;
+import luolastogeneraattori.utils.Raport;
 import luolastogeneraattori.objects.Room;
 import luolastogeneraattori.utils.Delaunay;
 import luolastogeneraattori.utils.CorridorList;
@@ -21,18 +21,23 @@ public class CaveGenerator {
      * 3. Muodostetaan generoiduista huoneista verkko Delaunay Triangulation algoritmilla
      * 4. Muodostetaan generoidusta verkosta virittävä puu
      * 5. generoidaan käytävät a* haulla
+     * @param roomsToGenerate   Generoitavien huoneiden määrä
+     * @param collisionMethod   Törmäystarkistusmetodi
+     * @param spanningTreeType  Virittävä puu algoritmi
+     * @param treeCutOff    Todennäköisyys jolla puuhun kuulumaton käytävä otetaa mukaan
+     * @return  Raportti, joka kertoo kuinka tehokkaasti algoritmi suoriutui
      */
-    public Raport generateMap(int roomsToGenerate, String spanningTreeType, int treeCutOff) {
-        long beforeUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
+    public Raport generateMap(int roomsToGenerate, String collisionMethod, String spanningTreeType, int treeCutOff) {
+        long beforeUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         long t1 = System.currentTimeMillis();
         this.rooms = new Room[roomsToGenerate];             //Alustetaan Room[] rooms sopivan kokoiseksi
         for (int i = 0; i < roomsToGenerate; i++) {         //Generoidaan satunnaiset huoneet
             this.rooms[i] = Room.generateRandomRoom(i);
         }
-        while (checkCollisions() > 0) {                     //Huoneiden törmäilysimulaatio
-        }            
-        
-        corridors = new Delaunay().triangulate(rooms).clearDuplicates();        
+        while (checkCollisions(collisionMethod) > 0) {                     //Huoneiden törmäilysimulaatio
+        }
+
+        corridors = new Delaunay().triangulate(rooms).clearDuplicates();
         switch (spanningTreeType) {
             case "BASIC":
                 corridors = new SpanningTrees().basic(rooms, corridors, roomsToGenerate, treeCutOff);
@@ -43,12 +48,11 @@ public class CaveGenerator {
             default:
                 break;
         }
-        //corridors = new SpanningTrees().random(rooms, corridors, roomsToGenerate);
-        
+
         draw();                                             //Piirtää generoinnin lopputuloksen Cave-Olion karttaan
         long actualTimeSpent = System.currentTimeMillis() - t1;
-        long afterUsedMem=Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory();
-        long actualMemUsed=afterUsedMem-beforeUsedMem;
+        long afterUsedMem = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        long actualMemUsed = afterUsedMem - beforeUsedMem;
         return new Raport(actualTimeSpent, actualMemUsed);
     }
     
@@ -57,11 +61,21 @@ public class CaveGenerator {
      * ja laskee tapahtuneiden törmäyksien lukumäärän
      * @return  int     Tapahtuneiden törmäysten lukumäärä
      */
-    private int checkCollisions() {
+    private int checkCollisions(String collisionMethod) {
         int collisions = 0;
         for (int i = 0; i < rooms.length; i++) {
-            for (int o = i + 1; o < rooms.length; o++) {
-                collisions += rooms[i].checkCollision(rooms[o]);
+            for (int o = 0; o < rooms.length; o++) {
+                if (i == o) {
+                    continue;
+                }
+                switch (collisionMethod) {
+                    case "SPHERE":
+                        collisions += rooms[i].checkCollision(rooms[o]);
+                        break;
+                    case "SQUARE":
+                        collisions += rooms[i].checkCollisionSquare(rooms[o]);
+                        break;
+                }
             }
             collisions += rooms[i].checkCollisionWithWalls();
         }
