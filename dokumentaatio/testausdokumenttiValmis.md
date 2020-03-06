@@ -42,8 +42,8 @@ Tree CUtoff : 0
 |n|aika|
 |---|---|
 |25|1 ms|
-|100||10 ms|
-|250||1300 ms|
+|100|10 ms|
+|250|1300 ms|
 
 en nyt keksinyt että miten tästä graafin piirtäisi mutta äkkisillään vaikuttaisi jyrkemmältä kuin mitä
 n^2*log(n) pitäisi olla
